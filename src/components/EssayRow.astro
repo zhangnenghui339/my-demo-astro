@@ -1,0 +1,28 @@
+---
+interface Props {
+  date: string;
+  category: string;
+  title: string;
+  link: string;
+}
+
+const { date, category, title, link } = Astro.props;
+---
+
+<a
+  href={link}
+  class="group grid gap-4 border-t border-zinc-200 py-6 transition hover:border-zinc-950 sm:grid-cols-[160px_1fr_32px] sm:items-center"
+>
+  <div class="flex items-center gap-3 text-xs font-semibold uppercase text-zinc-400 sm:block">
+    <time>{date}</time>
+    <span class="sm:mt-2 sm:block">{category}</span>
+  </div>
+
+  <h3 class="text-lg font-semibold leading-snug text-zinc-950 sm:text-xl">
+    {title}
+  </h3>
+
+  <span class="hidden text-right text-lg text-zinc-400 transition group-hover:translate-x-1 group-hover:text-zinc-950 sm:block">
+    -&gt;
+  </span>
+</a>

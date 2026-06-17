@@ -1,12 +1,166 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import PillarCard from "../components/PillarCard.astro";
+import EssayRow from "../components/EssayRow.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const pillars = [
+  {
+    tag: "Reviews",
+    tagColorClass: "bg-blue-50 text-blue-700",
+    countText: "4 deep reviews",
+    title: "The Reality of Modern AI Productivity Tools",
+    description:
+      "A grounded review system for separating durable workflow leverage from short-lived AI hype.",
+    link: "/reviews",
+  },
+  {
+    tag: "Templates",
+    tagColorClass: "bg-emerald-50 text-emerald-700",
+    countText: "Systems library",
+    title: "The Digital Writing & Multi-Platform Content Recycling Notion System",
+    description:
+      "A reusable operating layer for turning one insight into essays, newsletters, posts, and search assets.",
+    link: "/templates",
+  },
+  {
+    tag: "Tools",
+    tagColorClass: "bg-amber-50 text-amber-700",
+    countText: "Operator stack",
+    title: "Deploying an Automated SEO Competitor Spying Agent Using Open-Source Frameworks",
+    description:
+      "A practical agent workflow for monitoring competitors, content gaps, SERP shifts, and growth signals.",
+    link: "/tools",
+  },
+  {
+    tag: "Resources",
+    tagColorClass: "bg-violet-50 text-violet-700",
+    countText: "Founder map",
+    title: "The Global Growth Map for Solo Founders and Micro-SaaS Operators",
+    description:
+      "Market selection, distribution loops, and compounding assets for lean international growth.",
+    link: "/resources",
+  },
+];
+
+const essays = [
+  {
+    date: "Jun 17, 2026",
+    category: "Technical SEO",
+    title: "Baidu Webmaster Tools Sitemap Failure? Unconventional Workarounds for Faster Indexing",
+    link: "/resources/baidu-webmaster-tools-sitemap-failure",
+  },
+  {
+    date: "Jun 12, 2026",
+    category: "Google Ads",
+    title: "Eliminating Budget Waste in Google Ads App Campaigns Without Killing Learning Velocity",
+    link: "/resources/google-ads-app-campaign-budget-waste",
+  },
+];
 ---
 
 <Layout>
-  <h1>My First Astro Website</h1>
-  <p>Deploy Test 2026-06-16</p>
+  <section class="mx-auto max-w-6xl px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-5 inline-flex rounded-md border border-zinc-200 bg-white px-3 py-1 text-xs font-semibold uppercase text-zinc-500 shadow-sm">
+        Career strategy for high-leverage operators
+      </p>
+      <h1 class="text-5xl font-semibold leading-[1.04] text-zinc-950 sm:text-6xl lg:text-7xl">
+        Build Your Compounding Career System Before the Market Forces You To
+      </h1>
+      <p class="mx-auto mt-7 max-w-2xl text-lg leading-8 text-zinc-600 sm:text-xl">
+        CareerRadar turns deep guides, operator templates, AI tools, and growth resources into a practical system for modern work leverage.
+      </p>
+
+      <div class="mx-auto mt-10 flex max-w-2xl items-center gap-3 rounded-lg border border-zinc-200 bg-white p-2 shadow-2xl shadow-zinc-200/80">
+        <div class="grid size-10 place-items-center rounded-md bg-zinc-100 text-zinc-500">
+          <span class="text-sm">/</span>
+        </div>
+        <div class="min-w-0 flex-1 text-left">
+          <p class="truncate text-sm font-medium text-zinc-950">
+            Search guides, tools, templates, and growth systems
+          </p>
+          <p class="truncate text-xs text-zinc-400">
+            Try: AI resume tools, SEO agent, Google Ads waste
+          </p>
+        </div>
+        <button class="hidden rounded-md bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 sm:block">
+          Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 pb-20 sm:px-8">
+    <div class="grid overflow-hidden rounded-lg border border-zinc-200 bg-zinc-950 text-white shadow-2xl shadow-zinc-300/60 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="p-8 sm:p-12 lg:p-14">
+        <p class="text-xs font-semibold uppercase text-blue-300">Spotlight Feature</p>
+        <h2 class="mt-5 max-w-2xl text-3xl font-semibold leading-tight sm:text-4xl">
+          The operator's guide to building a career system that compounds across content, tools, and distribution.
+        </h2>
+        <p class="mt-6 max-w-xl text-base leading-8 text-zinc-300">
+          A deep framework for replacing reactive job-search behavior with owned assets, reusable workflows, and market-facing proof.
+        </p>
+        <a
+          href="/resources/compounding-career-system"
+          class="mt-9 inline-flex rounded-md bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
+        >
+          Read the Full Guide
+        </a>
+      </div>
+
+      <div class="relative min-h-[320px] overflow-hidden bg-[#111827]">
+        <div class="absolute inset-0 bg-[linear-gradient(135deg,#2563eb_0%,#14b8a6_36%,#f59e0b_68%,#fafafa_100%)] opacity-90"></div>
+        <div class="absolute inset-x-10 top-10 h-24 rounded-lg border border-white/20 bg-white/15 backdrop-blur-md"></div>
+        <div class="absolute bottom-10 left-10 right-16 rounded-lg border border-white/20 bg-zinc-950/50 p-5 backdrop-blur-md">
+          <div class="mb-5 h-2 w-24 rounded-sm bg-white/80"></div>
+          <div class="grid gap-3">
+            <div class="h-2 rounded-sm bg-white/40"></div>
+            <div class="h-2 w-5/6 rounded-sm bg-white/30"></div>
+            <div class="h-2 w-2/3 rounded-sm bg-white/25"></div>
+          </div>
+        </div>
+        <div class="absolute right-8 top-28 grid w-36 gap-2 rounded-lg border border-white/20 bg-white/20 p-4 backdrop-blur-md">
+          <div class="h-2 rounded-sm bg-zinc-950/50"></div>
+          <div class="h-2 w-2/3 rounded-sm bg-zinc-950/30"></div>
+          <div class="mt-4 h-10 rounded-md bg-white/45"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 py-20 sm:px-8">
+    <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="text-xs font-semibold uppercase text-zinc-400">Four content pillars</p>
+        <h2 class="mt-3 text-3xl font-semibold text-zinc-950 sm:text-4xl">
+          Built around depth, not volume.
+        </h2>
+      </div>
+      <p class="max-w-md text-sm leading-7 text-zinc-500">
+        Each pillar starts as a curated guide surface, then expands into databases, tools, and repeatable assets.
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      {pillars.map((pillar) => <PillarCard {...pillar} />)}
+    </div>
+  </section>
+
+  <section id="latest-essays" class="mx-auto max-w-6xl px-5 py-20 sm:px-8">
+    <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="text-xs font-semibold uppercase text-zinc-400">Latest Essays</p>
+        <h2 class="mt-3 text-3xl font-semibold text-zinc-950 sm:text-4xl">
+          Recent field notes.
+        </h2>
+      </div>
+      <a href="/resources" class="text-sm font-semibold text-zinc-950 hover:text-blue-600">
+        View all resources
+      </a>
+    </div>
+
+    <div class="rounded-lg border-b border-zinc-200">
+      {essays.map((essay) => <EssayRow {...essay} />)}
+    </div>
+  </section>
 </Layout>
