@@ -1,0 +1,39 @@
+---
+description: CareerRadar 项目整体战略与红线（求职者 pSEO + Affiliate 站）
+alwaysApply: true
+---
+
+# CareerRadar — 项目战略与工程约束
+
+## 定位
+- 求职者的 AI 工具评测 + 免费工具 + 模板 + 指南站（careerradar.io）。
+- 商业模式：Affiliate（主收入）+ Email List（复利资产）+ 后期 Micro-SaaS / AI Coach。
+- 北极星：复利资产（网站权重 / Email List / 求职数据）成型；盈利是滞后产出。
+- ⚠️ 绝不生成 operator / 创始人 / SEO agent / micro-SaaS 类内容——那是历史跑偏，一律拒绝或改回求职语义。
+
+## 目标用户
+- 正在找工作的高意图求职者（不是创始人，不是 operator）。
+- 关心的事：简历能否过 ATS、如何拿到面试、选哪个工具。
+
+## 内容支柱（Header nav 顺序 = 优先级）
+- **Reviews** — 商业调查意图 → Affiliate（主收入）
+- **Tools** — 免费 ATS Checker → 信任 + Email
+- **Templates** — 下载意图 → Email
+- **Resources** — 信息意图 → topical authority + 内链
+- 漏斗：Resources / Templates 引流 → Reviews 变现 + Tools 留 email。
+
+## URL 架构
+- Reviews：`/best/ai-resume-builder/`、`/best/ai-resume-builder/[job]/`
+- Tools：`/tools/ats-checker/`、`/tools/ats-checker/[job]/`
+- 信任页：`/how-we-test/`、`/about/`、`/disclosure/`
+- Templates / Resources：`/templates/[job]/`、`/resources/...`
+- 内链循环：Reviews ↔ ATS Checker；首页 footer 放按职位的 pSEO 内链矩阵。
+
+## 红线（不可妥协，生成任何代码都遵守）
+1. **免费工具零摩擦**：ATS Checker 在拿到 email 之前必须先交付结果；禁止登录墙 / 前置表单。
+2. **反 thin content**：`[job]` 变体页若换职位只改 H1 = 失败。`atsKeywords / commonPitfalls / resumeExample / prefillSample` 必须随职位真实差异化。
+3. **Email 优先 → Affiliate 后置**：工具页顺序为「先给结果 → 再要 email → 最后放 affiliate（问题暴露后最相关）」。
+4. **诚实评测**：每个评测同时含 pros 和 cons（含"不推荐做 X"）；不许通篇好评。
+5. **Affiliate 合规**：外链加 `rel="sponsored nofollow"`；每页可见 affiliate disclosure。
+6. **SEO 基线**：每页唯一 H1 / title / meta description / canonical；恰当 JSON-LD（Review / SoftwareApplication / FAQPage）；`@astrojs/sitemap` 自动生成 sitemap。
+7. **只链真实页**：每个上线链接必须指向有真实内容的页面；未建好的页不链、不放"coming soon"占位。

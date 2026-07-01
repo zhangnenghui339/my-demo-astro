@@ -1,73 +1,126 @@
 ---
-import "../styles/global.css";
+import "../styles/careerradar.css";
+import { withBase } from "../utils/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
 
 const {
-  title = "CareerRadar - Build Your Compounding Career System",
-  description = "CareerRadar publishes deep guides, reviews, templates, tools, and resources for modern career operators.",
+  title = "CareerRadar — See your resume the way the robots do",
+  description = "CareerRadar scans your resume against real ATS rules for free, then points you to the honest, tested tools to fix it.",
 } = Astro.props;
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 const navItems = [
-  { label: "Reviews", href: "/reviews" },
-  { label: "Templates", href: "/templates" },
-  { label: "Tools", href: "/tools" },
-  { label: "Resources", href: "/resources" },
+  { label: "Reviews", href: "/reviews/" },
+  { label: "Tools", href: "/tools/" },
+  { label: "Templates", href: "/templates/" },
+  { label: "Resources", href: "/resources/" },
+];
+
+const trustLinks = [
+  { label: "How We Test", href: "/how-we-test/" },
+  { label: "About", href: "/about/" },
+  { label: "Disclosure", href: "/disclosure/" },
+];
+
+const exploreLinks = [
+  { label: "Reviews", href: "/reviews/" },
+  { label: "Tools", href: "/tools/" },
+  { label: "Templates", href: "/templates/" },
+  { label: "Resources", href: "/resources/" },
+];
+
+const roleLinks = [
+  { label: "Product Manager", href: "/tools/ats-checker/product-manager/" },
+  { label: "Software Engineer", href: "/tools/ats-checker/software-engineer/" },
+  { label: "Data Analyst", href: "/tools/ats-checker/data-analyst/" },
+  { label: "Nurse", href: "/tools/ats-checker/nurse/" },
+  { label: "Accountant", href: "/tools/ats-checker/accountant/" },
+  { label: "Marketing Manager", href: "/tools/ats-checker/marketing-manager/" },
+  { label: "Project Manager", href: "/tools/ats-checker/project-manager/" },
+  { label: "Sales Rep", href: "/tools/ats-checker/sales-representative/" },
+  { label: "Teacher", href: "/tools/ats-checker/teacher/" },
+  { label: "Graphic Designer", href: "/tools/ats-checker/graphic-designer/" },
+  { label: "Customer Success", href: "/tools/ats-checker/customer-success/" },
+  { label: "Financial Analyst", href: "/tools/ats-checker/financial-analyst/" },
 ];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="min-h-screen bg-[#f7f7f4] text-zinc-950 antialiased">
-    <div class="min-h-screen bg-[linear-gradient(180deg,#ffffff_0%,#f7f7f4_46%,#ffffff_100%)]">
-      <header class="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/82 backdrop-blur-xl">
-        <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-          <a href="/" class="flex items-center gap-2 text-[15px] font-semibold text-zinc-950">
-            <span class="grid size-8 place-items-center rounded-md bg-zinc-950 text-[11px] font-bold text-white">
-              CR
-            </span>
-            <span>Career<span class="text-blue-600">Radar</span></span>
-          </a>
-
-          <div class="hidden items-center gap-8 md:flex">
-            {
-              navItems.map((item) => (
-                <a
-                  href={item.href}
-                  class="text-sm font-medium text-zinc-500 transition hover:text-zinc-950"
-                >
-                  {item.label}
-                </a>
-              ))
-            }
-          </div>
-
-          <a
-            href="#latest-essays"
-            class="rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-950 shadow-sm transition hover:border-zinc-950"
-          >
-            Latest Essays
-          </a>
+  <body>
+    <header class="cr-header">
+      <div class="cr-wrap cr-header__row">
+        <a class="cr-logo" href={withBase("/")}>
+          <span class="cr-logo__mark" aria-hidden="true"></span>CareerRadar
+        </a>
+        <nav class="cr-nav" aria-label="Primary">
+          {navItems.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
         </nav>
-      </header>
+        <a class="cr-btn cr-btn--sm" href={withBase("/tools/ats-checker/")}>Scan resume</a>
+      </div>
+    </header>
 
-      <main>
-        <slot />
-      </main>
+    <main>
+      <slot />
+    </main>
 
-      <footer class="border-t border-zinc-200 bg-white">
-        <div class="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <p>(c) 2026 CareerRadar. All rights reserved.</p>
-          <p class="text-zinc-700">Build leverage before you need luck.</p>
+    <footer class="cr-footer">
+      <div class="cr-wrap">
+        <div class="cr-footer__top">
+          <div class="cr-footer__brand">
+            <a class="cr-logo cr-logo--light" href={withBase("/")}>
+              <span class="cr-logo__mark" aria-hidden="true"></span>CareerRadar
+            </a>
+            <p>Build leverage before you need luck.</p>
+          </div>
+          <div class="cr-footer__col">
+            <h4>Trust</h4>
+            {trustLinks.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+          </div>
+          <div class="cr-footer__col">
+            <h4>Explore</h4>
+            {exploreLinks.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+          </div>
         </div>
-      </footer>
-    </div>
+
+        <div class="cr-footer__matrix">
+          <h4>Free ATS checker by role</h4>
+          <div class="cr-footer__roles">
+            {roleLinks.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+          </div>
+        </div>
+
+        <div class="cr-footer__legal">
+          <p>
+            CareerRadar is reader-supported. We may earn a commission from links, at no cost to
+            you. Reviews stay independent — see
+            <a href={withBase("/how-we-test/")}>How We Test</a>.
+          </p>
+          <p>© 2026 CareerRadar</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
