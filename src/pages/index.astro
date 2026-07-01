@@ -2,57 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import { withBase } from "../utils/site";
 
-const pillars = [
-  {
-    tag: "01",
-    title: "Honest, ATS-tested reviews",
-    body: "We buy, test, and score the tools so you don't waste money on hype.",
-    link: "/reviews/",
-    linkText: "Compare tools →",
-  },
-  {
-    tag: "02",
-    title: "Free ATS checker & fixers",
-    body: "Scan your resume and see exactly what to change — no account needed.",
-    link: "/tools/ats-checker/",
-    linkText: "Scan free →",
-  },
-  {
-    tag: "03",
-    title: "ATS-ready templates by role",
-    body: "Resume templates built to parse cleanly for your specific job.",
-    link: "/templates/",
-    linkText: "Browse templates →",
-  },
-  {
-    tag: "04",
-    title: "Guides for ATS & interviews",
-    body: "Plain-English guides to pass screening and prep for the interview.",
-    link: "/resources/",
-    linkText: "Read guides →",
-  },
-];
-
-const fieldNotes = [
-  {
-    topic: "ATS Mechanics",
-    title: "How ATS software actually parses your resume (and where it breaks)",
-    link: "#",
-  },
-  {
-    topic: "Keywords",
-    title: "The resume keywords that matter for Product Managers",
-    link: "#",
-  },
-  {
-    topic: "Formatting",
-    title: "Why your PDF might be invisible to an ATS",
-    link: "#",
-  },
-];
+const title = "CareerRadar — ATS-Tested AI Job-Search Tools, Reviews & a Free Resume Scanner";
+const description =
+  "Most resumes are filtered by ATS software before a human sees them. Scan yours free, and get independent, tested reviews of the AI tools that help you land interviews.";
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <section class="cr-hero">
     <div class="cr-wrap cr-hero__grid">
       <div class="cr-hero__copy">
@@ -132,42 +87,48 @@ const fieldNotes = [
     <div class="cr-wrap">
       <div class="cr-section-head">
         <p class="cr-eyebrow cr-eyebrow--ink">What CareerRadar covers</p>
-        <h2 class="cr-h2">Built around depth, not volume.</h2>
+        <h2 class="cr-h2">Start where it matters most.</h2>
       </div>
-      <div class="cr-grid">
-        {
-          pillars.map((pillar) => (
-            <a class="cr-card" href={withBase(pillar.link)}>
-              <span class="cr-card__tag">{pillar.tag}</span>
-              <h3 class="cr-card__title">{pillar.title}</h3>
-              <p class="cr-card__body">{pillar.body}</p>
-              <span class="cr-link">{pillar.linkText}</span>
-            </a>
-          ))
-        }
+      <div class="cr-grid cr-grid--two">
+        <a class="cr-card" href={withBase("/best/ai-resume-builder/")}>
+          <span class="cr-card__tag">Reviews</span>
+          <h3 class="cr-card__title">Honest, ATS-tested reviews</h3>
+          <p class="cr-card__body">
+            We buy, test, and score the tools so you don't waste money on hype — starting with AI
+            resume builders.
+          </p>
+          <span class="cr-link">Compare tools →</span>
+        </a>
+        <a class="cr-card" href={withBase("/tools/ats-checker/")}>
+          <span class="cr-card__tag">Tools</span>
+          <h3 class="cr-card__title">Free ATS resume checker</h3>
+          <p class="cr-card__body">
+            Scan your resume and see exactly what to change — no account needed.
+          </p>
+          <span class="cr-link">Scan free →</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="cr-notes">
-    <div class="cr-wrap">
-      <div class="cr-section-head cr-section-head--row">
-        <h2 class="cr-h2">Field notes</h2>
-        <a class="cr-link" href={withBase("/resources/")}>All guides →</a>
+  <section class="cr-why">
+    <div class="cr-wrap cr-why__grid">
+      <div>
+        <span class="cr-badge">◎ Independently tested</span>
+        <h2 class="cr-h2" style="margin-top:18px;">
+          We test against real ATS software — then tell you the truth.
+        </h2>
       </div>
-      <ul class="cr-notes__list">
-        {
-          fieldNotes.map((note) => (
-            <li>
-              <a href={withBase(note.link)}>
-                <span class="cr-notes__topic">{note.topic}</span>
-                <span class="cr-notes__title">{note.title}</span>
-                <span class="cr-notes__arrow" aria-hidden="true">→</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <div>
+        <ul class="cr-why__points">
+          <li>We run resumes through actual applicant tracking systems, not guesses.</li>
+          <li>Reviews stay independent — we say when a tool isn't worth it.</li>
+          <li>Affiliate links never change a score. See exactly how we test.</li>
+        </ul>
+        <div class="cr-why__cta">
+          <a class="cr-btn cr-btn--sm" href={withBase("/how-we-test/")}>How we test →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -183,7 +144,8 @@ const fieldNotes = [
         </p>
       </div>
       <form class="cr-capture__form" onsubmit="return false">
-        <input type="email" placeholder="you@email.com" required />
+        <label class="cr-visually-hidden" for="cr-email">Email address</label>
+        <input id="cr-email" type="email" name="email" placeholder="you@email.com" required />
         <button class="cr-btn cr-btn--signal" type="submit">Send me the pack</button>
       </form>
     </div>

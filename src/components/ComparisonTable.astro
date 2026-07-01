@@ -1,0 +1,44 @@
+---
+import type { ResumeBuilder } from "../data/resume-builders";
+interface Props {
+  builders: ResumeBuilder[];
+}
+const { builders } = Astro.props;
+---
+
+<div class="cr-tablewrap">
+  <table class="cr-tbl">
+    <thead>
+      <tr>
+        <th>Tool</th><th>ATS parse</th><th>Free tier</th><th>From</th><th>Best for</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        builders.map((b) => (
+          <tr class={b.top ? "top" : ""}>
+            <td>
+              <span class="cr-tool">{b.name}</span>
+              <br />
+              <span class="cr-pill">{b.verdict}</span>
+            </td>
+            <td>
+              <span class="cr-score">
+                {b.score}
+                <span>/100</span>
+              </span>
+            </td>
+            <td>{b.freeTier}</td>
+            <td>{b.price}</td>
+            <td>{b.bestFor}</td>
+            <td>
+              <a class="cr-btn cr-btn--signal cr-btn--tiny" href={b.affiliateUrl} rel="sponsored nofollow">
+                Try {b.name} →
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

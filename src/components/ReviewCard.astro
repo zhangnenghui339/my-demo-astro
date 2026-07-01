@@ -1,0 +1,37 @@
+---
+import type { ResumeBuilder } from "../data/resume-builders";
+interface Props {
+  builder: ResumeBuilder;
+}
+const { builder } = Astro.props;
+---
+
+<div class={builder.top ? "cr-rev top" : "cr-rev"}>
+  <div class="cr-rev__head">
+    <div>
+      <div class="cr-rev__name">{builder.name}</div>
+      <div class="cr-rev__price">From {builder.price} · {builder.freeTier} free</div>
+    </div>
+    <span class="cr-pill">{builder.verdict}</span>
+  </div>
+  <div class="cr-proscons">
+    <div class="cr-pros">
+      <h4>Pros</h4>
+      <ul>
+        {builder.pros.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+    <div class="cr-cons">
+      <h4>Cons</h4>
+      <ul>
+        {builder.cons.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </div>
+  <p class="cr-rev__verdict"><strong>Verdict.</strong> {builder.verdictText}</p>
+  <div style="margin-top:16px">
+    <a class="cr-btn cr-btn--signal cr-btn--tiny" href={builder.affiliateUrl} rel="sponsored nofollow">
+      Try {builder.name} →
+    </a>
+  </div>
+</div>

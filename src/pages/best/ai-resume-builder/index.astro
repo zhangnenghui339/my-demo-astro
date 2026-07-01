@@ -1,0 +1,205 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import ComparisonTable from "../../../components/ComparisonTable.astro";
+import ReviewCard from "../../../components/ReviewCard.astro";
+import { resumeBuilders } from "../../../data/resume-builders";
+import { withBase } from "../../../utils/site";
+
+const title = "Best AI Resume Builders, ATS-Tested (2026) — CareerRadar";
+const description =
+  "We tested every major AI resume builder against real ATS software. See the honest scores, what passed, what failed, and which is worth paying for.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Best AI Resume Builders, ATS-Tested",
+  itemListElement: resumeBuilders.map((b, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: b.name,
+  })),
+};
+---
+
+<Layout title={title} description={description}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Reviews / AI Resume Builders</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.4vw,3.2rem);margin-top:12px;max-width:20ch;">
+        The best AI resume builders, tested against real ATS software
+      </h1>
+      <div class="cr-verdict">
+        <strong>Our pick: Rezi</strong> — the cleanest ATS parsing and the least formatting risk.
+        <strong>Kickresume</strong> wins on design; <strong>Teal</strong> is best if you're tracking
+        many applications at once.
+      </div>
+      <p class="cr-meta-row">
+        Independently tested against 3 real ATS platforms · Updated June 2026 ·
+        <a href={withBase("/how-we-test/")}>How we test →</a>
+      </p>
+      <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="cr-btn cr-btn--sm" href="#compare">Jump to comparison ↓</a>
+        <a
+          class="cr-btn cr-btn--sm"
+          style="background:transparent;color:#a9752a;border:1px solid var(--line);"
+          href={withBase("/tools/ats-checker/")}
+        >
+          Scan your resume free →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section" id="compare">
+    <div class="cr-wrap">
+      <p class="cr-kicker">At a glance</p>
+      <h2 class="cr-h2" style="margin-bottom:20px;">The comparison</h2>
+      <ComparisonTable builders={resumeBuilders} />
+      <p style="font-size:12.5px;color:var(--muted);margin-top:10px;font-family:'IBM Plex Mono',monospace;">
+        Scores are placeholders — replace with your own ATS test results before publishing.
+      </p>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Methodology</p>
+      <h2 class="cr-h2">How we tested</h2>
+      <p style="max-width:70ch;color:var(--muted);margin-top:12px;">
+        We built the same real-world resume in every tool, exported it, and ran each export
+        through three live applicant tracking systems — checking for dropped sections, mangled
+        dates, and lost contact fields. We also scored keyword matching against a sample job
+        description. Full method on our
+        <a href={withBase("/how-we-test/")} style="color:#a9752a;text-decoration:underline;">
+          How We Test
+        </a>
+        page.
+      </p>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">In depth</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">The tools, one by one</h2>
+      <div class="cr-reviews">
+        {resumeBuilders.map((b) => <ReviewCard builder={b} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Want the full breakdown?</strong> Get our 12-tool comparison
+          sheet (PDF) + ATS-ready templates.
+        </p>
+        <form onsubmit="return false" style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input
+            type="email"
+            name="email"
+            placeholder="you@email.com"
+            required
+            style="padding:11px 14px;border-radius:8px;border:1px solid rgba(159,176,196,.3);background:rgba(255,255,255,.06);color:#fff;min-width:200px;"
+          />
+          <button class="cr-btn cr-btn--signal cr-btn--tiny" type="submit">Send it to me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Before you buy</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">How to choose</h2>
+      <div class="cr-guide">
+        <div class="cr-guide__item">
+          <h4>1. Start with parsing, not looks</h4>
+          <p>A beautiful resume the ATS can't read is worthless. Prioritize clean, single-column output.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>2. Match the job, not a template</h4>
+          <p>Pick a tool that compares your resume to the actual job description and flags missing keywords.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>3. Test before you pay</h4>
+          <p>Every pick here has a free tier. Scan your draft first — then upgrade only if you need to.</p>
+        </div>
+      </div>
+      <div class="cr-note" style="margin-top:28px;background:var(--surface);color:var(--text);border:1px solid var(--line);">
+        <p>Not sure where your resume stands right now? <strong>Scan it free</strong> — no signup.</p>
+        <a class="cr-btn cr-btn--sm" href={withBase("/tools/ats-checker/")}>Open the ATS checker →</a>
+      </div>
+      <h2 class="cr-h2" style="margin:40px 0 10px;">FAQ</h2>
+      <details class="cr-faq">
+        <summary>What is an ATS?</summary>
+        <p>
+          An applicant tracking system scans, parses, and ranks resumes before a recruiter sees
+          them. If it can't read your resume cleanly, a human may never review it.
+        </p>
+      </details>
+      <details class="cr-faq">
+        <summary>Do AI resume builders actually beat the ATS?</summary>
+        <p>
+          The good ones help by enforcing parseable formatting and matching keywords to the job.
+          They don't guarantee an interview — content and fit still decide that.
+        </p>
+      </details>
+      <details class="cr-faq">
+        <summary>Free or paid?</summary>
+        <p>
+          Start free to test parsing and layout. Pay only if you need premium templates, unlimited
+          exports, or keyword matching for a serious search.
+        </p>
+      </details>
+      <details class="cr-faq">
+        <summary>Will recruiters know I used AI?</summary>
+        <p>
+          Not from the tool itself. What matters is that the writing is accurate and specific to
+          you — generic AI phrasing is the giveaway, not the software.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Bottom line</p>
+      <h2 class="cr-h2">Our verdict</h2>
+      <p style="max-width:70ch;color:var(--muted);margin:12px 0 20px;">
+        For most job seekers, <strong style="color:var(--text)">Rezi</strong> is the safest choice
+        — it gets you through the ATS with the least risk. Choose Kickresume for design, Teal for
+        a high-volume search, or Enhancv when your content needs the most help.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="cr-btn cr-btn--signal" href={resumeBuilders[0].affiliateUrl} rel="sponsored nofollow">
+          Try Rezi (our pick) →
+        </a>
+        <a
+          class="cr-btn cr-btn--ghost"
+          style="color:#a9752a;border-color:var(--line);"
+          href={withBase("/tools/ats-checker/")}
+        >
+          Scan my resume first →
+        </a>
+      </div>
+      <div class="cr-author">
+        <div class="cr-author__avatar" aria-hidden="true"></div>
+        <div>
+          <strong style="color:var(--text)">Reviewed by [Your Name]</strong> — [one line of
+          credentials]. We buy and test every tool ourselves.
+        </div>
+      </div>
+      <div class="cr-disc">
+        CareerRadar is reader-supported. We may earn a commission from links on this page, at no
+        cost to you. It never changes our scores — see
+        <a href={withBase("/how-we-test/")} style="color:#a9752a;text-decoration:underline;">
+          How We Test
+        </a>.
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Layout>

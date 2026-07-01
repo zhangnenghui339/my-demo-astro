@@ -1,6 +1,7 @@
 ---
 import "../styles/careerradar.css";
 import { withBase } from "../utils/site";
+import { brand, nav, trustLinks, footerRoles } from "../data/site";
 
 interface Props {
   title?: string;
@@ -13,41 +14,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const navItems = [
-  { label: "Reviews", href: "/reviews/" },
-  { label: "Tools", href: "/tools/" },
-  { label: "Templates", href: "/templates/" },
-  { label: "Resources", href: "/resources/" },
-];
-
-const trustLinks = [
-  { label: "How We Test", href: "/how-we-test/" },
-  { label: "About", href: "/about/" },
-  { label: "Disclosure", href: "/disclosure/" },
-];
-
-const exploreLinks = [
-  { label: "Reviews", href: "/reviews/" },
-  { label: "Tools", href: "/tools/" },
-  { label: "Templates", href: "/templates/" },
-  { label: "Resources", href: "/resources/" },
-];
-
-const roleLinks = [
-  { label: "Product Manager", href: "/tools/ats-checker/product-manager/" },
-  { label: "Software Engineer", href: "/tools/ats-checker/software-engineer/" },
-  { label: "Data Analyst", href: "/tools/ats-checker/data-analyst/" },
-  { label: "Nurse", href: "/tools/ats-checker/nurse/" },
-  { label: "Accountant", href: "/tools/ats-checker/accountant/" },
-  { label: "Marketing Manager", href: "/tools/ats-checker/marketing-manager/" },
-  { label: "Project Manager", href: "/tools/ats-checker/project-manager/" },
-  { label: "Sales Rep", href: "/tools/ats-checker/sales-representative/" },
-  { label: "Teacher", href: "/tools/ats-checker/teacher/" },
-  { label: "Graphic Designer", href: "/tools/ats-checker/graphic-designer/" },
-  { label: "Customer Success", href: "/tools/ats-checker/customer-success/" },
-  { label: "Financial Analyst", href: "/tools/ats-checker/financial-analyst/" },
-];
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -57,6 +24,10 @@ const roleLinks = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <link rel="icon" href={withBase("/favicon.ico")} />
     <meta name="generator" content={Astro.generator} />
@@ -73,10 +44,10 @@ const roleLinks = [
     <header class="cr-header">
       <div class="cr-wrap cr-header__row">
         <a class="cr-logo" href={withBase("/")}>
-          <span class="cr-logo__mark" aria-hidden="true"></span>CareerRadar
+          <span class="cr-logo__mark" aria-hidden="true"></span>{brand.name}
         </a>
         <nav class="cr-nav" aria-label="Primary">
-          {navItems.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+          {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
         </nav>
         <a class="cr-btn cr-btn--sm" href={withBase("/tools/ats-checker/")}>Scan resume</a>
       </div>
@@ -91,9 +62,9 @@ const roleLinks = [
         <div class="cr-footer__top">
           <div class="cr-footer__brand">
             <a class="cr-logo cr-logo--light" href={withBase("/")}>
-              <span class="cr-logo__mark" aria-hidden="true"></span>CareerRadar
+              <span class="cr-logo__mark" aria-hidden="true"></span>{brand.name}
             </a>
-            <p>Build leverage before you need luck.</p>
+            <p>{brand.tagline}</p>
           </div>
           <div class="cr-footer__col">
             <h4>Trust</h4>
@@ -101,24 +72,24 @@ const roleLinks = [
           </div>
           <div class="cr-footer__col">
             <h4>Explore</h4>
-            {exploreLinks.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+            {nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
           </div>
         </div>
 
         <div class="cr-footer__matrix">
           <h4>Free ATS checker by role</h4>
           <div class="cr-footer__roles">
-            {roleLinks.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+            {footerRoles.map((r) => <a href={withBase(`/tools/ats-checker/${r.slug}/`)}>{r.label}</a>)}
           </div>
         </div>
 
         <div class="cr-footer__legal">
           <p>
-            CareerRadar is reader-supported. We may earn a commission from links, at no cost to
+            {brand.name} is reader-supported. We may earn a commission from links, at no cost to
             you. Reviews stay independent — see
             <a href={withBase("/how-we-test/")}>How We Test</a>.
           </p>
-          <p>© 2026 CareerRadar</p>
+          <p>© {year} {brand.name}</p>
         </div>
       </div>
     </footer>
