@@ -1,0 +1,118 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import AtsCheckerTool from "../../../components/AtsCheckerTool.astro";
+import { atsJobs, type AtsJob } from "../../../data/ats-jobs";
+import { resumeBuilders } from "../../../data/resume-builders";
+import { withBase } from "../../../utils/site";
+
+export function getStaticPaths() {
+  return atsJobs.map((job) => ({
+    params: { job: job.slug },
+    props: { job },
+  }));
+}
+
+interface Props {
+  job: AtsJob;
+}
+
+const { job } = Astro.props;
+const topPick = resumeBuilders.find((b) => b.top) ?? resumeBuilders[0];
+const title = `${job.h1} - CareerRadar`;
+const description = `${job.intro} Check role-specific keywords, ATS risks, and resume structure before applying.`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: `CareerRadar ${job.title} ATS Resume Checker`,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+---
+
+<Layout title={title} description={description}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Tools / ATS Checker / {job.title}</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:18ch;">
+        {job.h1}
+      </h1>
+      <div class="cr-verdict">
+        <strong>Built for {job.title} resumes.</strong> This checker preloads role-specific
+        keywords, sample job language, and common ATS pitfalls so the page is not just a swapped H1.
+      </div>
+      <p class="cr-meta-row">
+        Search intent: {job.searchIntent} 路
+        <a href={withBase("/how-we-test/")}>How our checks work</a>
+      </p>
+    </div>
+  </section>
+
+  <AtsCheckerTool job={job} />
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Role-specific pitfalls</p>
+      <h2 class="cr-h2" style="margin-bottom:20px;">Common {job.title} ATS problems</h2>
+      <div class="cr-reviews">
+        {job.commonPitfalls.map((pitfall) => (
+          <article class="cr-rev">
+            <div class="cr-rev__name">Pitfall</div>
+            <p style="color:var(--muted);margin:10px 0 0;">{pitfall}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section" id="email-report">
+    <div class="cr-wrap">
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Want the full {job.title} repair checklist?</strong> Get
+          role-specific fixes, keywords, and ATS-safe template notes by email.
+        </p>
+        <form onsubmit="return false" style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input
+            type="email"
+            name="email"
+            placeholder="you@email.com"
+            required
+            style="padding:11px 14px;border-radius:8px;border:1px solid rgba(159,176,196,.3);background:rgba(255,255,255,.06);color:#fff;min-width:220px;"
+          />
+          <button class="cr-btn cr-btn--signal cr-btn--tiny" type="submit">Send my checklist</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">After the problem is visible</p>
+      <h2 class="cr-h2">Want a tool to fix it faster?</h2>
+      <p style="max-width:70ch;color:var(--muted);margin:12px 0 20px;">
+        If your {job.title} resume has parsing or keyword issues, compare the AI resume builders we
+        tested against ATS risk.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="cr-btn cr-btn--signal" href={topPick.affiliateUrl} rel="sponsored nofollow">
+          Try {topPick.name} ({topPick.verdict})
+        </a>
+        <a class="cr-btn cr-btn--sm" href={withBase("/best/ai-resume-builder/")}>
+          Compare all resume builders
+        </a>
+      </div>
+      <div class="cr-disc">
+        Affiliate links may earn us a commission at no cost to you. Scores and verdicts stay
+        independent. See <a href={withBase("/how-we-test/")} style="color:#a9752a;text-decoration:underline;">How We Test</a>.
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Layout>

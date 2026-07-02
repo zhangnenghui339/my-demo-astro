@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { withBase } from "../utils/site";
+
+const title = "About CareerRadar - Honest AI Resume Tool Reviews";
+const description =
+  "CareerRadar helps job seekers understand ATS risk, compare AI resume tools, and make better job-search decisions with independent testing.";
+---
+
+<Layout title={title} description={description}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Trust / About</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:18ch;">
+        We help job seekers see what the ATS sees.
+      </h1>
+      <div class="cr-verdict">
+        <strong>CareerRadar exists for one reason:</strong> job seekers should not waste time or
+        money on tools that look good but fail when a real applicant tracking system parses the
+        resume.
+      </div>
+      <p class="cr-meta-row">
+        Independent reviews 路 Free ATS checks 路 Built for job seekers, not vendors
+      </p>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Positioning</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">What CareerRadar covers</h2>
+      <div class="cr-guide">
+        <div class="cr-guide__item">
+          <h4>AI resume tool reviews</h4>
+          <p>We compare resume builders, cover letter tools, and job-search software against real job-seeker needs.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>Free ATS tools</h4>
+          <p>We give value before email. The ATS Checker shows a result first, then offers a deeper checklist.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>Search assets</h4>
+          <p>Templates, resources, and role-specific pages are built to answer real job-search intent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Operating principles</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">What we optimize for</h2>
+      <div class="cr-reviews">
+        <article class="cr-rev">
+          <div class="cr-rev__name">Value before capture</div>
+          <p style="color:var(--muted);margin:10px 0 0;">
+            Free tools should deliver useful feedback before asking for an email address. Trust comes before conversion.
+          </p>
+        </article>
+        <article class="cr-rev">
+          <div class="cr-rev__name">Honest tradeoffs</div>
+          <p style="color:var(--muted);margin:10px 0 0;">
+            Every review needs clear pros, cons, and a “not recommended for” use case. A page that praises everything helps nobody.
+          </p>
+        </article>
+        <article class="cr-rev">
+          <div class="cr-rev__name">Real search intent</div>
+          <p style="color:var(--muted);margin:10px 0 0;">
+            We build around job seekers looking for ATS safety, interview chances, templates, and practical tool decisions.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">How the site makes money</p>
+      <h2 class="cr-h2">Reader-supported, not vendor-directed.</h2>
+      <p style="max-width:72ch;color:var(--muted);margin:12px 0 20px;">
+        CareerRadar may earn a commission when readers click affiliate links and buy a tool. That
+        does not change rankings, scores, or verdicts. Commercial links are disclosed and marked
+        with sponsored/nofollow attributes where they appear.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="cr-btn cr-btn--sm" href={withBase("/disclosure/")}>Read disclosure</a>
+        <a class="cr-btn cr-btn--sm" style="background:transparent;color:#a9752a;border:1px solid var(--line);" href={withBase("/how-we-test/")}>
+          See how we test
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Start with your own resume.</strong> Scan it first, then
+          compare paid tools only if the result shows a real problem.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a class="cr-btn cr-btn--signal cr-btn--tiny" href={withBase("/tools/ats-checker/")}>Open ATS Checker</a>
+          <a class="cr-btn cr-btn--tiny" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28);" href={withBase("/best/ai-resume-builder/")}>Compare tools</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

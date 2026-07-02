@@ -1,0 +1,110 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import AtsCheckerTool from "../../../components/AtsCheckerTool.astro";
+import { resumeBuilders } from "../../../data/resume-builders";
+import { withBase } from "../../../utils/site";
+
+const title = "Free ATS Resume Checker - CareerRadar";
+const description =
+  "Paste your resume and a job description to get a free ATS readiness check. No signup required before results.";
+
+const topPick = resumeBuilders.find((b) => b.top) ?? resumeBuilders[0];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "CareerRadar Free ATS Resume Checker",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+---
+
+<Layout title={title} description={description}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Tools / ATS Checker</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:18ch;">
+        Free ATS Resume Checker - see what breaks before you apply.
+      </h1>
+      <div class="cr-verdict">
+        <strong>No signup wall.</strong> Paste your resume first. Get a score, missing keywords,
+        formatting risks, and section checks. Email is optional after the result.
+      </div>
+      <p class="cr-meta-row">
+        Built for job seekers 路 Value before email 路
+        <a href={withBase("/how-we-test/")}>How our checks work</a>
+      </p>
+    </div>
+  </section>
+
+  <AtsCheckerTool />
+
+  <section class="cr-section" id="email-report">
+    <div class="cr-wrap">
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Want the full repair checklist?</strong> Get the complete
+          ATS report, section-by-section fixes, and 50 resume templates by email.
+        </p>
+        <form onsubmit="return false" style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input
+            type="email"
+            name="email"
+            placeholder="you@email.com"
+            required
+            style="padding:11px 14px;border-radius:8px;border:1px solid rgba(159,176,196,.3);background:rgba(255,255,255,.06);color:#fff;min-width:220px;"
+          />
+          <button class="cr-btn cr-btn--signal cr-btn--tiny" type="submit">Send my checklist</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">After the problem is visible</p>
+      <h2 class="cr-h2">Want a tool to fix it faster?</h2>
+      <p style="max-width:70ch;color:var(--muted);margin:12px 0 20px;">
+        If your resume has parsing or keyword issues, start with our tested AI resume builders.
+        We recommend tools only after you see what needs fixing.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="cr-btn cr-btn--signal" href={topPick.affiliateUrl} rel="sponsored nofollow">
+          Try {topPick.name} ({topPick.verdict})
+        </a>
+        <a class="cr-btn cr-btn--sm" href={withBase("/best/ai-resume-builder/")}>
+          Compare all resume builders
+        </a>
+      </div>
+      <div class="cr-disc">
+        Affiliate links may earn us a commission at no cost to you. Scores and verdicts stay
+        independent. See <a href={withBase("/how-we-test/")} style="color:#a9752a;text-decoration:underline;">How We Test</a>.
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">FAQ</p>
+      <h2 class="cr-h2" style="margin-bottom:10px;">ATS checker questions</h2>
+      <details class="cr-faq">
+        <summary>Do I need to sign up before seeing results?</summary>
+        <p>No. The checker gives the first result before asking for email. That is the rule.</p>
+      </details>
+      <details class="cr-faq">
+        <summary>What does the score measure?</summary>
+        <p>It estimates structure, section clarity, contact readability, common ATS format risks, and keyword overlap with the job description.</p>
+      </details>
+      <details class="cr-faq">
+        <summary>Should I use an AI resume builder?</summary>
+        <p>Only after you know the problem. If the issue is formatting, choose an ATS-safe builder. If the issue is keywords, choose a tool with job-description matching.</p>
+      </details>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Layout>

@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { withBase } from "../utils/site";
+
+const title = "Affiliate Disclosure - CareerRadar";
+const description =
+  "CareerRadar is reader-supported. We may earn commissions from affiliate links, but commercial relationships do not change our reviews or rankings.";
+---
+
+<Layout title={title} description={description}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Trust / Disclosure</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:18ch;">
+        Affiliate disclosure.
+      </h1>
+      <div class="cr-verdict">
+        <strong>CareerRadar is reader-supported.</strong> We may earn a commission when you click a
+        link and buy a product. That never changes what we recommend, what we criticize, or how we
+        rank tools.
+      </div>
+      <p class="cr-meta-row">
+        Applies to reviews, comparison tables, tool recommendations, and outbound commercial links
+      </p>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Plain English</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">How affiliate links work</h2>
+      <div class="cr-guide">
+        <div class="cr-guide__item">
+          <h4>1. You click a tool link</h4>
+          <p>Some links point to partners such as resume builders or job-search software products.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>2. You may buy later</h4>
+          <p>If you purchase through that link, the vendor may pay CareerRadar a commission.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>3. Your price does not change</h4>
+          <p>Affiliate commissions are paid by the vendor. They should not add extra cost for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Editorial firewall</p>
+      <h2 class="cr-h2" style="margin-bottom:20px;">What affiliate money cannot buy</h2>
+      <div class="cr-tablewrap">
+        <table class="cr-tbl">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Rule</th>
+              <th>Why it matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Rankings</strong></td>
+              <td>Affiliate payout does not determine position.</td>
+              <td>Commercial investigation pages only work if the recommendation is credible.</td>
+            </tr>
+            <tr>
+              <td><strong>Scores</strong></td>
+              <td>Scores are based on testing criteria, not commission rates.</td>
+              <td>ATS parsing, job matching, output quality, and risk matter more than vendor incentives.</td>
+            </tr>
+            <tr>
+              <td><strong>Cons</strong></td>
+              <td>Every review must include meaningful drawbacks.</td>
+              <td>If a tool is not right for a use case, we say so.</td>
+            </tr>
+            <tr>
+              <td><strong>Free tools</strong></td>
+              <td>Tools must deliver value before pushing paid products.</td>
+              <td>The ATS Checker should expose the problem before any affiliate recommendation appears.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Link handling</p>
+      <h2 class="cr-h2">How commercial links are marked</h2>
+      <p style="max-width:72ch;color:var(--muted);margin:12px 0 20px;">
+        Where a link is commercial, we mark it with attributes such as
+        <code>rel="sponsored nofollow"</code>. This helps search engines and readers understand that
+        the link may be monetized.
+      </p>
+      <div class="cr-disc">
+        Current affiliate URLs are placeholders until each partner program is configured. Replace
+        placeholder links with final tracking URLs before launch.
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Related trust pages</p>
+      <h2 class="cr-h2" style="margin-bottom:20px;">Read the testing method</h2>
+      <p style="max-width:70ch;color:var(--muted);margin:0 0 20px;">
+        Disclosure explains the business model. The methodology page explains how tools are tested,
+        scored, and reviewed.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="cr-btn cr-btn--signal" href={withBase("/how-we-test/")}>How We Test</a>
+        <a class="cr-btn cr-btn--sm" href={withBase("/about/")}>About CareerRadar</a>
+      </div>
+    </div>
+  </section>
+</Layout>

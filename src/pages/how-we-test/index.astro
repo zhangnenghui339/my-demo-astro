@@ -1,0 +1,128 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { withBase } from "../../utils/site";
+
+const title = "How We Test AI Resume Tools - CareerRadar";
+const description =
+  "CareerRadar tests AI resume builders and ATS tools with the same resumes, job descriptions, parsing checks, and disclosure standards.";
+---
+
+<Layout title={title} description={description}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Trust / Methodology</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:18ch;">
+        How we test AI resume tools.
+      </h1>
+      <div class="cr-verdict">
+        <strong>Scores are earned, not sold.</strong> Affiliate relationships never change rankings.
+        Every review must include tradeoffs, cons, and who should not use the tool.
+      </div>
+      <p class="cr-meta-row">
+        Updated July 2026 路 Applies to Reviews and ATS Checker pages
+      </p>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Method</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">The test protocol</h2>
+      <div class="cr-guide">
+        <div class="cr-guide__item">
+          <h4>1. Same source resume</h4>
+          <p>We start from the same baseline resume so tools compete on output quality, not input advantage.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>2. Same target job</h4>
+          <p>We compare each tool against the same job description to measure keyword matching and relevance.</p>
+        </div>
+        <div class="cr-guide__item">
+          <h4>3. Same ATS risks</h4>
+          <p>We check dropped sections, contact parsing, dates, columns, tables, and template readability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Scorecard</p>
+      <h2 class="cr-h2" style="margin-bottom:20px;">What affects a ranking</h2>
+      <div class="cr-tablewrap">
+        <table class="cr-tbl">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Weight</th>
+              <th>What we look for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ATS parsing</strong></td>
+              <td>35%</td>
+              <td>Clean section detection, contact fields, dates, and single-column readability.</td>
+            </tr>
+            <tr>
+              <td><strong>Job matching</strong></td>
+              <td>25%</td>
+              <td>Keyword gaps, role language, and whether the tool improves relevance without keyword stuffing.</td>
+            </tr>
+            <tr>
+              <td><strong>Output quality</strong></td>
+              <td>20%</td>
+              <td>Specific bullet rewrites, believable phrasing, and whether the final resume still sounds human.</td>
+            </tr>
+            <tr>
+              <td><strong>Pricing & free tier</strong></td>
+              <td>10%</td>
+              <td>Whether a job seeker can test value before paying.</td>
+            </tr>
+            <tr>
+              <td><strong>Risk & honesty</strong></td>
+              <td>10%</td>
+              <td>Where the tool is weak, who should avoid it, and whether templates create ATS risk.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <p class="cr-kicker">Editorial rules</p>
+      <h2 class="cr-h2" style="margin-bottom:22px;">What we will not compromise</h2>
+      <div class="cr-reviews">
+        <article class="cr-rev">
+          <div class="cr-rev__name">Every review includes cons</div>
+          <p style="color:var(--muted);margin:10px 0 0;">A page that praises every tool is useless. We say when a tool is not recommended for a specific use case.</p>
+        </article>
+        <article class="cr-rev">
+          <div class="cr-rev__name">Free tools give value before email</div>
+          <p style="color:var(--muted);margin:10px 0 0;">The ATS Checker shows results first. Email capture happens only after the user has received useful feedback.</p>
+        </article>
+        <article class="cr-rev">
+          <div class="cr-rev__name">Affiliate links are disclosed</div>
+          <p style="color:var(--muted);margin:10px 0 0;">Commercial links use sponsored/nofollow attributes and never determine the ranking.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section">
+    <div class="cr-wrap">
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Want to test your own resume?</strong> Start with the free
+          ATS Checker, then compare tools only if the scan shows a real problem.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a class="cr-btn cr-btn--signal cr-btn--tiny" href={withBase("/tools/ats-checker/")}>Open ATS Checker</a>
+          <a class="cr-btn cr-btn--tiny" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28);" href={withBase("/best/ai-resume-builder/")}>Read Reviews</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

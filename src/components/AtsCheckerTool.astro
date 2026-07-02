@@ -1,0 +1,160 @@
+---
+import type { AtsJob } from "../data/ats-jobs";
+
+interface Props {
+  job?: AtsJob;
+}
+
+const { job } = Astro.props;
+const resumeValue = job?.resumeExample ?? "";
+const jobValue = job?.jobDescriptionSample ?? "";
+const title = job ? `Paste your ${job.title} resume and target job.` : "Paste your resume and target job.";
+const copy = job
+  ? `This version checks ${job.title} resumes against role-specific ATS keywords, common pitfalls, and job-description language.`
+  : "This front-end MVP estimates ATS readiness from structure, keyword overlap, and common parsing risks. Replace the scoring rules with live parsing later.";
+---
+
+<section class="cr-section" id="checker">
+  <div class="cr-wrap">
+    {job && (
+      <div class="cr-job-context">
+        <div>
+          <p class="cr-kicker">Role-specific ATS signals</p>
+          <h2 class="cr-h2">{job.title} keyword profile</h2>
+          <p>{job.intro}</p>
+        </div>
+        <div class="cr-job-context__list">
+          {job.atsKeywords.map((keyword) => <span>{keyword}</span>)}
+        </div>
+      </div>
+    )}
+
+    <div class="cr-tool-panel">
+      <div class="cr-tool-panel__input">
+        <p class="cr-kicker">Step 1</p>
+        <h2 class="cr-h2">{title}</h2>
+        <p class="cr-tool-panel__copy">{copy}</p>
+
+        <form class="cr-checker js-ats-checker" data-role={job?.title ?? "General"}>
+          <label for="resume-text">Resume</label>
+          <textarea
+            id="resume-text"
+            name="resume"
+            rows="10"
+            placeholder="Paste your resume text here..."
+            required
+          >{resumeValue}</textarea>
+
+          <label for="job-text">Job description <span>(optional but recommended)</span></label>
+          <textarea
+            id="job-text"
+            name="job"
+            rows="7"
+            placeholder="Paste the job description to check keyword match..."
+          >{jobValue}</textarea>
+
+          <button class="cr-btn cr-btn--signal" type="submit">Check my resume</button>
+        </form>
+      </div>
+
+      <aside class="cr-tool-panel__result" aria-live="polite">
+        <p class="cr-kicker">Step 2</p>
+        <h2 class="cr-h2">Your ATS result appears here.</h2>
+        <div class="cr-scorecard">
+          <div>
+            <span class="cr-scorecard__label">ATS readiness</span>
+            <strong data-score-value>--</strong>
+          </div>
+          <p data-score-copy>Run the check to reveal parsing risk and missing keywords.</p>
+        </div>
+
+        <div class="cr-result-grid">
+          <div>
+            <h3>Missing keywords</h3>
+            <ul data-keyword-list>
+              <li>Paste a job description to compare role-specific language.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Format risks</h3>
+            <ul data-risk-list>
+              {job ? job.commonPitfalls.map((risk) => <li>{risk}</li>) : <li>We will flag common ATS issues after the scan.</li>}
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+  const normalizeWords = (text) =>
+    Array.from(
+      new Set(
+        text
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, " ")
+          .split(/\s+/)
+          .filter((word) => word.length > 4)
+      )
+    );
+
+  document.querySelectorAll(".js-ats-checker").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const root = form.closest(".cr-tool-panel");
+      const scoreValue = root?.querySelector("[data-score-value]");
+      const scoreCopy = root?.querySelector("[data-score-copy]");
+      const keywordList = root?.querySelector("[data-keyword-list]");
+      const riskList = root?.querySelector("[data-risk-list]");
+      const data = new FormData(form);
+      const resume = String(data.get("resume") || "");
+      const job = String(data.get("job") || "");
+      const lowerResume = resume.toLowerCase();
+      const risks = [];
+
+      if (!/experience|work history|employment/i.test(resume)) risks.push("Missing a clear Experience section.");
+      if (!/skills|technical skills|core skills/i.test(resume)) risks.push("Missing a dedicated Skills section.");
+      if (!/@/.test(resume)) risks.push("Contact email is not visible.");
+      if (resume.length < 900) risks.push("Resume text looks short; ATS ranking may lack evidence.");
+      if (/\btable\b|\bcolumns\b|\btext box\b/i.test(resume)) risks.push("Possible table/column/text-box formatting risk.");
+
+      const jobWords = normalizeWords(job).slice(0, 32);
+      const missing = jobWords.filter((word) => !lowerResume.includes(word)).slice(0, 7);
+      const matched = jobWords.length ? jobWords.length - missing.length : 0;
+      const keywordScore = jobWords.length ? Math.round((matched / jobWords.length) * 30) : 18;
+      const structureScore = Math.max(25, 70 - risks.length * 10);
+      const score = Math.min(96, Math.max(38, structureScore + keywordScore));
+
+      if (scoreValue) scoreValue.textContent = `${score}/100`;
+      if (scoreCopy) {
+        scoreCopy.textContent =
+          score >= 82
+            ? "Strong base. Tighten missing keywords before applying."
+            : score >= 65
+              ? "Usable, but there are fixable ATS risks."
+              : "High risk. Fix structure and keyword coverage before sending.";
+      }
+
+      if (keywordList) {
+        keywordList.innerHTML = "";
+        const keywordItems = missing.length ? missing : ["No major keyword gaps detected from the pasted job description."];
+        keywordItems.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          keywordList.appendChild(li);
+        });
+      }
+
+      if (riskList) {
+        riskList.innerHTML = "";
+        const riskItems = risks.length ? risks : ["No major structure risks detected in this front-end check."];
+        riskItems.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          riskList.appendChild(li);
+        });
+      }
+    });
+  });
+</script>
