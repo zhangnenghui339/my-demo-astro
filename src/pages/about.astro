@@ -1,13 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { breadcrumbSchema, webPageSchema } from "../utils/seo";
 import { withBase } from "../utils/site";
 
 const title = "About CareerRadar - Honest AI Resume Tool Reviews";
 const description =
   "CareerRadar helps job seekers understand ATS risk, compare AI resume tools, and make better job-search decisions with independent testing.";
+
+const jsonLd = [
+  webPageSchema({
+    type: "AboutPage",
+    name: title,
+    description,
+    path: "/about/",
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about/" },
+  ]),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={jsonLd}>
   <section class="cr-page">
     <div class="cr-wrap">
       <p class="cr-crumb">Trust / About</p>

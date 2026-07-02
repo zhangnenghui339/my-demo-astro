@@ -3,9 +3,10 @@ import Layout from "../../../layouts/Layout.astro";
 import ComparisonTable from "../../../components/ComparisonTable.astro";
 import ReviewCard from "../../../components/ReviewCard.astro";
 import { resumeBuilders } from "../../../data/resume-builders";
+import { articleSchema, breadcrumbSchema, faqSchema } from "../../../utils/seo";
 import { withBase } from "../../../utils/site";
 
-const title = "Best AI Resume Builders, ATS-Tested (2026) — CareerRadar";
+const title = "Best AI Resume Builders, ATS-Tested (2026) - CareerRadar";
 const description =
   "We tested every major AI resume builder against real ATS software. See the honest scores, what passed, what failed, and which is worth paying for.";
 
@@ -19,9 +20,40 @@ const jsonLd = {
     name: b.name,
   })),
 };
+
+const schema = [
+  jsonLd,
+  articleSchema({
+    headline: title,
+    description,
+    path: "/best/ai-resume-builder/",
+  }),
+  faqSchema([
+    {
+      question: "What is an ATS?",
+      answer:
+        "An applicant tracking system scans, parses, and ranks resumes before a recruiter sees them.",
+    },
+    {
+      question: "Do AI resume builders beat the ATS?",
+      answer:
+        "The best tools help with parseable formatting and job-description keyword matching, but they do not guarantee interviews.",
+    },
+    {
+      question: "Should I use a free or paid AI resume builder?",
+      answer:
+        "Start free to test parsing and layout. Pay only when you need premium templates, exports, or keyword matching.",
+    },
+  ]),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Reviews", path: "/best/ai-resume-builder/" },
+    { name: "Best AI Resume Builders", path: "/best/ai-resume-builder/" },
+  ]),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={schema}>
   <section class="cr-page">
     <div class="cr-wrap">
       <p class="cr-crumb">Reviews / AI Resume Builders</p>
@@ -201,5 +233,4 @@ const jsonLd = {
     </div>
   </section>
 
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </Layout>

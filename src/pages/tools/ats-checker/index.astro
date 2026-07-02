@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import AtsCheckerTool from "../../../components/AtsCheckerTool.astro";
 import { resumeBuilders } from "../../../data/resume-builders";
+import { breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../../utils/seo";
 import { withBase } from "../../../utils/site";
 
 const title = "Free ATS Resume Checker - CareerRadar";
@@ -10,21 +11,33 @@ const description =
 
 const topPick = resumeBuilders.find((b) => b.top) ?? resumeBuilders[0];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "CareerRadar Free ATS Resume Checker",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-};
+const jsonLd = [
+  softwareApplicationSchema("CareerRadar Free ATS Resume Checker"),
+  faqSchema([
+    {
+      question: "Do I need to sign up before seeing ATS checker results?",
+      answer: "No. The checker gives the first result before asking for email.",
+    },
+    {
+      question: "What does the ATS score measure?",
+      answer:
+        "It estimates structure, section clarity, contact readability, common ATS format risks, and keyword overlap with the job description.",
+    },
+    {
+      question: "Should I use an AI resume builder?",
+      answer:
+        "Use one after you know the problem: formatting issues need ATS-safe layouts, while keyword gaps need job-description matching.",
+    },
+  ]),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Tools", path: "/tools/ats-checker/" },
+    { name: "ATS Resume Checker", path: "/tools/ats-checker/" },
+  ]),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={jsonLd}>
   <section class="cr-page">
     <div class="cr-wrap">
       <p class="cr-crumb">Tools / ATS Checker</p>
@@ -106,5 +119,4 @@ const jsonLd = {
       </details>
     </div>
   </section>
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </Layout>

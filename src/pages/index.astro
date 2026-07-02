@@ -1,13 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { organizationSchema, webPageSchema, websiteSchema } from "../utils/seo";
 import { withBase } from "../utils/site";
 
-const title = "CareerRadar — ATS-Tested AI Job-Search Tools, Reviews & a Free Resume Scanner";
+const title = "CareerRadar - ATS Resume Checker & AI Resume Tool Reviews";
 const description =
-  "Most resumes are filtered by ATS software before a human sees them. Scan yours free, and get independent, tested reviews of the AI tools that help you land interviews.";
+  "Scan your resume for ATS issues, then compare independently tested AI resume builders and job-search tools before you spend money.";
+
+const jsonLd = [
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({
+    name: title,
+    description,
+    path: "/",
+  }),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={jsonLd}>
   <section class="cr-hero">
     <div class="cr-wrap cr-hero__grid">
       <div class="cr-hero__copy">

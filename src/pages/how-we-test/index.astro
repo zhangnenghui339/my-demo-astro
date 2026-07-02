@@ -1,13 +1,38 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { articleSchema, breadcrumbSchema, faqSchema } from "../../utils/seo";
 import { withBase } from "../../utils/site";
 
 const title = "How We Test AI Resume Tools - CareerRadar";
 const description =
   "CareerRadar tests AI resume builders and ATS tools with the same resumes, job descriptions, parsing checks, and disclosure standards.";
+
+const jsonLd = [
+  articleSchema({
+    headline: title,
+    description,
+    path: "/how-we-test/",
+  }),
+  faqSchema([
+    {
+      question: "How does CareerRadar test AI resume tools?",
+      answer:
+        "CareerRadar uses the same source resume, target job description, and ATS risk checks for each tool.",
+    },
+    {
+      question: "Do affiliate relationships affect rankings?",
+      answer:
+        "No. Affiliate relationships do not change rankings, scores, verdicts, or the requirement to list meaningful drawbacks.",
+    },
+  ]),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "How We Test", path: "/how-we-test/" },
+  ]),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={jsonLd}>
   <section class="cr-page">
     <div class="cr-wrap">
       <p class="cr-crumb">Trust / Methodology</p>

@@ -1,13 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { breadcrumbSchema, webPageSchema } from "../utils/seo";
 import { withBase } from "../utils/site";
 
 const title = "Affiliate Disclosure - CareerRadar";
 const description =
   "CareerRadar is reader-supported. We may earn commissions from affiliate links, but commercial relationships do not change our reviews or rankings.";
+
+const jsonLd = [
+  webPageSchema({
+    name: title,
+    description,
+    path: "/disclosure/",
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Affiliate Disclosure", path: "/disclosure/" },
+  ]),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={jsonLd}>
   <section class="cr-page">
     <div class="cr-wrap">
       <p class="cr-crumb">Trust / Disclosure</p>

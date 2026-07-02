@@ -3,6 +3,7 @@ import Layout from "../../../layouts/Layout.astro";
 import AtsCheckerTool from "../../../components/AtsCheckerTool.astro";
 import { atsJobs, type AtsJob } from "../../../data/ats-jobs";
 import { resumeBuilders } from "../../../data/resume-builders";
+import { breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../../utils/seo";
 import { withBase } from "../../../utils/site";
 
 export function getStaticPaths() {
@@ -19,23 +20,29 @@ interface Props {
 const { job } = Astro.props;
 const topPick = resumeBuilders.find((b) => b.top) ?? resumeBuilders[0];
 const title = `${job.h1} - CareerRadar`;
-const description = `${job.intro} Check role-specific keywords, ATS risks, and resume structure before applying.`;
+const description = `${job.title} resume ATS checker with role keywords, parsing risks, sample job language, and structure checks before you apply.`;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: `CareerRadar ${job.title} ATS Resume Checker`,
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-};
+const jsonLd = [
+  softwareApplicationSchema(`CareerRadar ${job.title} ATS Resume Checker`),
+  faqSchema([
+    {
+      question: `What does the ${job.title} ATS checker look for?`,
+      answer: `It checks role keywords, ATS parsing risks, resume structure, and sample ${job.title} job language.`,
+    },
+    {
+      question: `Is the ${job.title} ATS checker free?`,
+      answer: "Yes. The first ATS readiness result is free and does not require signup.",
+    },
+  ]),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "ATS Resume Checker", path: "/tools/ats-checker/" },
+    { name: job.title, path: `/tools/ats-checker/${job.slug}/` },
+  ]),
+];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} jsonLd={jsonLd}>
   <section class="cr-page">
     <div class="cr-wrap">
       <p class="cr-crumb">Tools / ATS Checker / {job.title}</p>
@@ -114,5 +121,4 @@ const jsonLd = {
     </div>
   </section>
 
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </Layout>
