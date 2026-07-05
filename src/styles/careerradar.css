@@ -216,6 +216,84 @@ h1, h2, h3, h4 { font-family: "Space Grotesk", system-ui, sans-serif; margin: 0;
 }
 .cr-capture__form input::placeholder { color: var(--muted-on-ink); }
 .cr-capture__form input:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; }
+.cr-download-gate {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cr-download-gate p {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--muted-on-ink);
+  font-size: 13.5px;
+}
+.cr-modal-open { overflow: hidden; }
+.cr-download-modal[hidden] { display: none; }
+.cr-download-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.cr-download-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,16,26,.72);
+}
+.cr-download-modal__panel {
+  position: relative;
+  width: min(100%, 620px);
+  max-height: min(90vh, 720px);
+  overflow: auto;
+  background: #0b1420;
+  color: #eaf0f6;
+  border: 1px solid rgba(159,176,196,.28);
+  border-radius: 12px;
+  box-shadow: 0 28px 80px -34px rgba(0,0,0,.7);
+  padding: 24px;
+}
+.cr-download-modal__panel h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
+  margin: 0 36px 10px 0;
+}
+.cr-download-modal__copy {
+  color: var(--muted-on-ink);
+  margin: 0 0 18px;
+}
+.cr-download-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(159,176,196,.35);
+  border-radius: 8px;
+  background: rgba(255,255,255,.06);
+  color: #eaf0f6;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.cr-download-modal__close:hover { border-color: var(--signal); color: var(--signal); }
+.cr-brevo-form {
+  width: min(100%, 540px);
+  margin-top: 18px;
+  overflow: hidden;
+}
+.cr-brevo-form iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+}
+.cr-brevo-form--modal {
+  background: #eef2f6;
+  border-radius: 8px;
+}
 
 /* Footer */
 .cr-footer { background: #08101a; color: var(--muted-on-ink); padding: 64px 0 40px; font-size: 15px; }

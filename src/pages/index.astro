@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import LeadMagnetGate from "../components/LeadMagnetGate.astro";
 import { organizationSchema, webPageSchema, websiteSchema } from "../utils/seo";
 import { withBase } from "../utils/site";
 
@@ -22,7 +23,7 @@ const jsonLd = [
   <section class="cr-hero">
     <div class="cr-wrap cr-hero__grid">
       <div class="cr-hero__copy">
-        <p class="cr-eyebrow">ATS Signal Check — Independent &amp; Free</p>
+        <p class="cr-eyebrow">ATS Signal Check - Independent &amp; Free</p>
         <h1 class="cr-h1">See your resume<br />the way the robots do.</h1>
         <p class="cr-lede">
           Most applications are filtered by ATS software before a human ever looks. CareerRadar
@@ -31,13 +32,13 @@ const jsonLd = [
         </p>
         <div class="cr-hero__cta">
           <a class="cr-btn cr-btn--signal" href={withBase("/tools/ats-checker/")}>
-            Scan my resume — free
+            Scan my resume - free
           </a>
           <a class="cr-btn cr-btn--ghost" href={withBase("/best/ai-resume-builder/")}>
-            Best AI resume builders →
+            Best AI resume builders
           </a>
         </div>
-        <p class="cr-readout">No signup to scan · Tested against real ATS software</p>
+        <p class="cr-readout">No signup to scan | Tested against real ATS software</p>
       </div>
 
       <div class="cr-radar" aria-hidden="true">
@@ -89,7 +90,7 @@ const jsonLd = [
           We ran every major AI resume tool through the same ATS gauntlet. Here's what passed,
           what quietly failed, and what's worth paying for.
         </p>
-        <span class="cr-link">Read the comparison →</span>
+        <span class="cr-link">Read the comparison</span>
       </a>
     </div>
   </section>
@@ -105,18 +106,18 @@ const jsonLd = [
           <span class="cr-card__tag">Reviews</span>
           <h3 class="cr-card__title">Honest, ATS-tested reviews</h3>
           <p class="cr-card__body">
-            We buy, test, and score the tools so you don't waste money on hype — starting with AI
+            We buy, test, and score the tools so you don't waste money on hype - starting with AI
             resume builders.
           </p>
-          <span class="cr-link">Compare tools →</span>
+          <span class="cr-link">Compare tools</span>
         </a>
         <a class="cr-card" href={withBase("/tools/ats-checker/")}>
           <span class="cr-card__tag">Tools</span>
           <h3 class="cr-card__title">Free ATS resume checker</h3>
           <p class="cr-card__body">
-            Scan your resume and see exactly what to change — no account needed.
+            Scan your resume and see exactly what to change - no account needed.
           </p>
-          <span class="cr-link">Scan free →</span>
+          <span class="cr-link">Scan free</span>
         </a>
       </div>
     </div>
@@ -125,19 +126,19 @@ const jsonLd = [
   <section class="cr-why">
     <div class="cr-wrap cr-why__grid">
       <div>
-        <span class="cr-badge">◎ Independently tested</span>
+        <span class="cr-badge">Independently tested</span>
         <h2 class="cr-h2" style="margin-top:18px;">
-          We test against real ATS software — then tell you the truth.
+          We test against real ATS software - then tell you the truth.
         </h2>
       </div>
       <div>
         <ul class="cr-why__points">
           <li>We run resumes through actual applicant tracking systems, not guesses.</li>
-          <li>Reviews stay independent — we say when a tool isn't worth it.</li>
+          <li>Reviews stay independent - we say when a tool isn't worth it.</li>
           <li>Affiliate links never change a score. See exactly how we test.</li>
         </ul>
         <div class="cr-why__cta">
-          <a class="cr-btn cr-btn--sm" href={withBase("/how-we-test/")}>How we test →</a>
+          <a class="cr-btn cr-btn--sm" href={withBase("/how-we-test/")}>How we test</a>
         </div>
       </div>
     </div>
@@ -154,11 +155,14 @@ const jsonLd = [
           Get our tested templates and screening tips. One email, no spam.
         </p>
       </div>
-      <form class="cr-capture__form" onsubmit="return false">
-        <label class="cr-visually-hidden" for="cr-email">Email address</label>
-        <input id="cr-email" type="email" name="email" placeholder="you@email.com" required />
-        <button class="cr-btn cr-btn--signal" type="submit">Send me the pack</button>
-      </form>
+      <LeadMagnetGate
+        variant="ats"
+        modalId="homepage-resume-kit"
+        ctaText="Download the resume kit"
+        helperText="Resume templates, ATS checklist, and interview questions sent to your inbox."
+        modalTitle="Get the resume kit"
+        modalCopy="Enter your email to receive the templates, checklist, and interview questions."
+      />
     </div>
   </section>
 </Layout>

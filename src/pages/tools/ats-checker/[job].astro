@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import AtsCheckerTool from "../../../components/AtsCheckerTool.astro";
+import LeadMagnetGate from "../../../components/LeadMagnetGate.astro";
 import { atsJobs, type AtsJob } from "../../../data/ats-jobs";
 import { resumeBuilders } from "../../../data/resume-builders";
 import { breadcrumbSchema, faqSchema, softwareApplicationSchema } from "../../../utils/seo";
@@ -84,16 +85,14 @@ const jsonLd = [
           <strong style="color:#fff;">Want the full {job.title} repair checklist?</strong> Get
           role-specific fixes, keywords, and ATS-safe template notes by email.
         </p>
-        <form onsubmit="return false" style="display:flex;gap:10px;flex-wrap:wrap;">
-          <input
-            type="email"
-            name="email"
-            placeholder="you@email.com"
-            required
-            style="padding:11px 14px;border-radius:8px;border:1px solid rgba(159,176,196,.3);background:rgba(255,255,255,.06);color:#fff;min-width:220px;"
-          />
-          <button class="cr-btn cr-btn--signal cr-btn--tiny" type="submit">Send my checklist</button>
-        </form>
+        <LeadMagnetGate
+          variant="ats"
+          modalId={`ats-${job.slug}-repair-kit`}
+          ctaText="Download the repair kit"
+          helperText={`${job.title} checklist, templates, and interview questions sent to your inbox.`}
+          modalTitle={`Get the ${job.title} repair kit`}
+          modalCopy={`Enter your email to receive the ${job.title} checklist, templates, and interview questions.`}
+        />
       </div>
     </div>
   </section>

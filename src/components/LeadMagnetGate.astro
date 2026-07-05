@@ -1,0 +1,90 @@
+---
+type Variant = "ats" | "comparison";
+
+interface Props {
+  variant: Variant;
+  ctaText: string;
+  helperText: string;
+  modalTitle: string;
+  modalCopy: string;
+  modalId: string;
+  eyebrow?: string;
+}
+
+const {
+  variant,
+  ctaText,
+  helperText,
+  modalTitle,
+  modalCopy,
+  modalId,
+  eyebrow = "Free download",
+} = Astro.props;
+
+const formUrls: Record<Variant, string> = {
+  ats:
+    "https://fb4ae211.sibforms.com/v2/serve/MUIFAGaOxiuMfFjmmu6svNgHrc18M_OKzQjBet4RZBrqn3tOVN1QbjBNSmXLpwj_Ap8yntxnhSXAN3Jkej4wVJTHhAAw6tbOW8bTu4qJ21z8z6_VdtmWiSOjVQ--LR5_-ZeYLdE-yOV7tsOtpFdcRh9XZ-eBw86m1my5xOgOfhs9UEa8PN9dBqQBhSpAYg_ZuCj8sfpAjhheqUf0bw==",
+  comparison:
+    "https://fb4ae211.sibforms.com/v2/serve/MUIFAIeYQAmHNVgWrEWlz0stgg1mHKYuq9Z6BUVb73MdzWYOHnto0cdXBNy5_df-rTYMWHOr7THf8GVMhNyqCJ8QNxsFHvpUNRN-47dcngaNgJu76tkWhkfp2O3YV3B3e___EKNuPXs2iQi5HSLX4iC1Q_mpCNXiC8I2Pdm9MZhHXGe1VDew34K2r1BZrCgDZiv_SpVHratI7LJSjg==",
+};
+---
+
+<div class="cr-download-gate">
+  <button class="cr-btn cr-btn--signal" type="button" data-download-open={modalId}>
+    {ctaText}
+  </button>
+  <p>{helperText}</p>
+</div>
+
+<div class="cr-download-modal" data-download-modal={modalId} hidden>
+  <div class="cr-download-modal__backdrop" data-download-close={modalId}></div>
+  <div class="cr-download-modal__panel" role="dialog" aria-modal="true" aria-labelledby={`${modalId}-title`}>
+    <button class="cr-download-modal__close" type="button" aria-label="Close" data-download-close={modalId}>
+      &times;
+    </button>
+    <p class="cr-eyebrow">{eyebrow}</p>
+    <h2 id={`${modalId}-title`}>{modalTitle}</h2>
+    <p class="cr-download-modal__copy">{modalCopy}</p>
+    <div class="cr-brevo-form cr-brevo-form--modal" aria-label={modalTitle}>
+      <iframe
+        width="540"
+        height="460"
+        src={formUrls[variant]}
+        frameborder="0"
+        scrolling="auto"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("[data-download-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const modalId = button.getAttribute("data-download-open");
+      const modal = document.querySelector(`[data-download-modal="${modalId}"]`);
+      if (!(modal instanceof HTMLElement)) return;
+      modal.hidden = false;
+      document.documentElement.classList.add("cr-modal-open");
+    });
+  });
+
+  document.querySelectorAll("[data-download-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const modalId = button.getAttribute("data-download-close");
+      const modal = document.querySelector(`[data-download-modal="${modalId}"]`);
+      if (!(modal instanceof HTMLElement)) return;
+      modal.hidden = true;
+      document.documentElement.classList.remove("cr-modal-open");
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    document.querySelectorAll("[data-download-modal]").forEach((modal) => {
+      if (!(modal instanceof HTMLElement) || modal.hidden) return;
+      modal.hidden = true;
+      document.documentElement.classList.remove("cr-modal-open");
+    });
+  });
+</script>

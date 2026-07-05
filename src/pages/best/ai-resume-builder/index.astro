@@ -1,5 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import LeadMagnetGate from "../../../components/LeadMagnetGate.astro";
 import ComparisonTable from "../../../components/ComparisonTable.astro";
 import ReviewCard from "../../../components/ReviewCard.astro";
 import { resumeBuilders } from "../../../data/resume-builders";
@@ -127,16 +128,14 @@ const schema = [
           <strong style="color:#fff;">Want the full breakdown?</strong> Get our 12-tool comparison
           sheet (PDF) + ATS-ready templates.
         </p>
-        <form onsubmit="return false" style="display:flex;gap:10px;flex-wrap:wrap;">
-          <input
-            type="email"
-            name="email"
-            placeholder="you@email.com"
-            required
-            style="padding:11px 14px;border-radius:8px;border:1px solid rgba(159,176,196,.3);background:rgba(255,255,255,.06);color:#fff;min-width:200px;"
-          />
-          <button class="cr-btn cr-btn--signal cr-btn--tiny" type="submit">Send it to me</button>
-        </form>
+        <LeadMagnetGate
+          variant="comparison"
+          modalId="comparison-sheet"
+          ctaText="Download the comparison sheet"
+          helperText="12-tool comparison sheet and ATS-ready templates sent to your inbox."
+          modalTitle="Get the comparison sheet"
+          modalCopy="Enter your email to receive the 12-tool comparison sheet and ATS-ready templates."
+        />
       </div>
     </div>
   </section>

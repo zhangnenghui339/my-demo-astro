@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CareerRadar mark</title>
+  <desc id="desc">Radar signal mark for CareerRadar.</desc>
+  <rect width="128" height="128" rx="28" fill="#0B1420"/>
+  <circle cx="64" cy="64" r="48" fill="none" stroke="#F4B740" stroke-width="8"/>
+  <circle cx="64" cy="64" r="27" fill="none" stroke="#F4B740" stroke-opacity=".42" stroke-width="4"/>
+  <circle cx="64" cy="64" r="8" fill="#F4B740"/>
+  <path d="M64 64 L64 17 A47 47 0 0 1 106 44 Z" fill="#F4B740" opacity=".28"/>
+  <path d="M64 64 L104 42" stroke="#FFD37E" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="96" cy="37" r="6" fill="#FFD37E"/>
+</svg>
