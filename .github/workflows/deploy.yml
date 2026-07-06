@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -36,9 +36,22 @@ jobs:
 
       - name: Build
         env:
-          SITE_URL: ${{ steps.pages.outputs.origin }}
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: https://careerradar.io
+          BASE_PATH: /
         run: npm run build
+
+      - name: Commit generated sitemap
+        if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f dist/sitemap-index.xml dist/sitemap-0.xml
+          if git diff --cached --quiet; then
+            echo "Sitemap is already up to date."
+          else
+            git commit -m "Update generated sitemap"
+            git push
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
