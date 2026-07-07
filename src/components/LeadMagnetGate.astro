@@ -64,7 +64,7 @@ const formUrls: Record<Variant, string> = {
       </div>
     ) : (
       <div class="cr-download-gate" style="margin-top:14px;">
-        <a class="cr-btn cr-btn--signal" href={downloads[sourceTag].url} rel="nofollow" data-tag={sourceTag} target="_blank">
+        <a class="cr-btn cr-btn--signal" href={downloads[sourceTag].url} rel="nofollow noopener noreferrer" data-tag={sourceTag} target="_blank">
           Download now — no signup needed
         </a>
         <p style="margin-top:8px;font-size:.85rem;opacity:.8;">{downloads[sourceTag].label}</p>
