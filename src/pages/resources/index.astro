@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import { guides } from "../../data/resources";
+import { stackedSchema, breadcrumbSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+const title = "Job Search Guides: How ATS and Recruiter Search Actually Work - CareerRadar";
+const description =
+  "Plain-English guides to the machinery behind your job applications — how ATS parsing works, how recruiters search, resume keywords, and interview prep in the AI era.";
+
+const quickAnswer =
+  "Most resume advice fails because it targets a myth (the robot that rejects you) instead of the real machinery (a database recruiters search). These guides explain what actually happens after you click apply — parsing, keyword search, ranking — and the specific fixes for each failure mode, based on hands-on testing rather than recycled folklore.";
+
+const faqs = [
+  {
+    question: "Are these guides based on real testing?",
+    answer:
+      "Yes — claims about parsing behavior come from running real resumes through ATS software ourselves. Where a result is preliminary, the page says so; verified results carry a date stamp.",
+  },
+  {
+    question: "Where should I start?",
+    answer:
+      "Start with 'How to Pass ATS Screening' to understand the machinery, then the resume keywords guide to fix searchability — those two changes move interview rates most.",
+  },
+];
+
+const jsonLd = [
+  stackedSchema({
+    headline: title,
+    description,
+    path: "/resources/",
+    items: guides.map((g) => ({ name: g.title, url: `/resources/${g.slug}/` })),
+    faqs,
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Resources", path: "/resources/" },
+  ]),
+];
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Resources</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.4vw,3.2rem);margin-top:12px;max-width:22ch;">
+        Guides to the machinery behind your applications
+      </h1>
+      <p class="cr-meta-row">
+        Tested, dated, no folklore ·
+        <a href={withBase("/how-we-test/")}>How we test →</a>
+      </p>
+
+      <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <div style="display:grid;gap:16px;margin-top:28px;">
+        {guides.map((g) => (
+          <article class="cr-card">
+            <div class="cr-card__body">
+              {g.lastVerified && <p class="cr-card__tag">Verified {g.lastVerified}</p>}
+              <h2 class="cr-card__title" style="font-size:1.15rem;">
+                <a href={withBase(`/resources/${g.slug}/`)}>{g.title}</a>
+              </h2>
+              <p>{g.description}</p>
+              <a class="cr-btn cr-btn--sm" href={withBase(`/resources/${g.slug}/`)}>
+                Read the guide →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <h2 style="margin-top:34px;">FAQ</h2>
+      {faqs.map((f) => (
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:600;">{f.question}</summary>
+          <p style="margin-top:8px;">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</Layout>

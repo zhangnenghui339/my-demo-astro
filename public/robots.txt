@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://careerradar.io/sitemap-index.xml
+
+# AI crawlers: structured site summary
+# https://careerradar.io/llms.txt

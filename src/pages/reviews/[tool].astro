@@ -1,0 +1,137 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import AffiliateLink from "../../components/AffiliateLink.astro";
+import LeadMagnetGate from "../../components/LeadMagnetGate.astro";
+import { resumeBuilders } from "../../data/resume-builders";
+import { articleSchema, faqSchema, breadcrumbSchema, softwareApplicationSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+// Phase 1 深评只出已有把握的 3 家（Spec §3）；补齐内容后往数组加 slug 即多一页。
+const DEEP_REVIEW_SLUGS = ["rezi", "jobscan", "teal"];
+
+export function getStaticPaths() {
+  return ["rezi", "jobscan", "teal"].map((slug) => ({ params: { tool: slug } }));
+}
+
+const { tool } = Astro.params;
+const b = resumeBuilders.find((x) => x.slug === tool);
+if (!b) throw new Error(`Unknown review tool: ${tool}`);
+
+const path = `/reviews/${b.slug}/`;
+const title = `${b.name} Review (2026): ATS Test Results, Pricing, Verdict`;
+const description = `Hands-on ${b.name} review: how it parsed in our ATS tests, what it's genuinely good at, where it falls short, and who should skip it.`;
+
+const quickAnswer = `${b.name} is ${b.verdict.toLowerCase()} in our lineup — ${b.verdictText} It's best for ${b.bestFor.toLowerCase()}, with a free tier (${b.freeTier}) and paid plans from ${b.price}. The cons are real: ${b.cons[0]?.toLowerCase() ?? "see below"}.`;
+
+const faqs = [
+  {
+    question: `Is ${b.name} worth paying for?`,
+    answer: `Start with the free tier (${b.freeTier}) to test parsing and layout with your own resume. Pay (from ${b.price}) only if you need what the paid tier unlocks and you're actively applying — subscriptions for idle job searches are the most common waste.`,
+  },
+  {
+    question: `Is ${b.name} ATS-friendly?`,
+    answer: b.pros[0] ?? `See our test notes above and verify your final export with our free ATS checker.`,
+  },
+  {
+    question: `Who should NOT use ${b.name}?`,
+    answer: b.cons.join(" "),
+  },
+];
+
+const jsonLd = [
+  articleSchema({ headline: title, description, path }),
+  softwareApplicationSchema(b.name),
+  faqSchema(faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Reviews", path: "/best/ai-resume-builder/" },
+    { name: `${b.name} Review`, path },
+  ]),
+];
+const others = resumeBuilders.filter((x) => DEEP_REVIEW_SLUGS.includes(x.slug) && x.slug !== b.slug);
+---
+
+<Layout title={`${title} - CareerRadar`} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">
+        <a href={withBase("/best/ai-resume-builder/")}>Reviews</a> / {b.name}
+      </p>
+      <h1 class="cr-h1" style="font-size:clamp(1.9rem,4.2vw,3rem);margin-top:12px;max-width:22ch;">
+        {b.name} review: {b.verdict.toLowerCase()}
+      </h1>
+      <p class="cr-meta-row">
+        ATS parse score: {b.score}/100 {b.verified ? "· Verified" : "· Preliminary"} ·
+        <a href={withBase("/how-we-test/")}>How we test →</a>
+      </p>
+
+      <QuickAnswer answer={quickAnswer} lastVerified={b.lastVerified ?? null} />
+
+      <h2 style="margin-top:34px;">What {b.name} gets right</h2>
+      <ul>{b.pros.map((p) => <li>{p}</li>)}</ul>
+
+      <h2 style="margin-top:28px;">Where it falls short</h2>
+      <ul class="cr-cons">{b.cons.map((c) => <li>{c}</li>)}</ul>
+
+      <h2 style="margin-top:28px;">Pricing</h2>
+      <p>
+        Free tier: <strong>{b.freeTier}</strong>. Paid from <strong>{b.price}</strong> — check the
+        billing cycle before paying; several tools in this category use short billing periods and
+        auto-renewing trials.
+      </p>
+
+      <h2 style="margin-top:28px;">Verdict</h2>
+      <div class="cr-verdict">
+        <strong>{b.verdict}.</strong> {b.verdictText}
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;">
+        <AffiliateLink tool={b.slug} pos="cta">Try {b.name} →</AffiliateLink>
+        <a
+          class="cr-btn cr-btn--sm"
+          style="background:transparent;color:#a9752a;border:1px solid var(--line);"
+          href={withBase("/best/ai-resume-builder/")}
+        >
+          Compare all 12 tools →
+        </a>
+      </div>
+      <p class="cr-disc" style="margin-top:12px;">
+        Affiliate link — see <a href={withBase("/disclosure/")}>disclosure</a>. Our score doesn't change
+        based on commissions.
+      </p>
+
+      <h2 style="margin-top:34px;">FAQ</h2>
+      {faqs.map((f) => (
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:600;">{f.question}</summary>
+          <p style="margin-top:8px;">{f.answer}</p>
+        </details>
+      ))}
+
+      {others.length > 0 && (
+        <>
+          <h2 style="margin-top:34px;">Also reviewed</h2>
+          <ul>
+            {others.map((o) => (
+              <li>
+                <a href={withBase(`/reviews/${o.slug}/`)}>{o.name} review — {o.verdict.toLowerCase()}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      <div style="margin-top:30px;">
+        <LeadMagnetGate
+          variant="comparison"
+          sourceTag="tools-comparison"
+          ctaText="Get the 12-tool comparison PDF"
+          helperText="All tools, prices, and ATS-format notes side by side."
+          modalTitle="12 AI Resume Tools Compared (PDF)"
+          modalCopy="The full comparison table plus a decision guide by scenario, free."
+          modalId={`review-${b.slug}`}
+        />
+      </div>
+    </div>
+  </section>
+</Layout>

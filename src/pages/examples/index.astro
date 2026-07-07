@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import { atsJobs } from "../../data/ats-jobs";
+import { stackedSchema, breadcrumbSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+const title = "Resume Examples by Job Title (ATS Keywords + Sample Language) - CareerRadar";
+const description =
+  "Role-specific resume examples: the exact keywords recruiters search, the pitfalls that sink each role's resume, and sample language you can adapt — for 10 job titles.";
+
+const quickAnswer =
+  "A useful resume example shows three things generic samples don't: the exact keywords recruiters query for that role, the role-specific pitfalls that break parsing or credibility, and sample achievement language with real numbers. Each example below covers all three for its job title — pick your role, adapt the language honestly, then verify the result with the free ATS checker.";
+
+const faqs = [
+  {
+    question: "Should I copy a resume example word for word?",
+    answer:
+      "No — recruiters and hiring managers recognize template language, and interviews test every claim. Use examples for structure, keyword vocabulary, and the shape of quantified bullets; the numbers and stories must be yours.",
+  },
+  {
+    question: "What's the difference between an example and a template?",
+    answer:
+      "A template is a fill-in file you download and complete; an example shows what good finished content looks like for a specific role. Use the example to learn the language, the template to build the document.",
+  },
+];
+
+const jsonLd = [
+  stackedSchema({
+    headline: title,
+    description,
+    path: "/examples/",
+    items: atsJobs.map((j) => ({ name: `${j.title} resume example`, url: `/examples/${j.slug}/` })),
+    faqs,
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Examples", path: "/examples/" },
+  ]),
+];
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Examples</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.4vw,3.2rem);margin-top:12px;max-width:20ch;">
+        Resume examples by job title
+      </h1>
+      <p class="cr-meta-row">
+        Keywords, pitfalls, and sample language per role ·
+        <a href={withBase("/templates/")}>Need the fill-in file instead? Templates →</a>
+      </p>
+
+      <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <div style="display:grid;gap:14px;margin-top:28px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));">
+        {atsJobs.map((j) => (
+          <article class="cr-card">
+            <div class="cr-card__body">
+              <h2 class="cr-card__title" style="font-size:1.05rem;">
+                <a href={withBase(`/examples/${j.slug}/`)}>{j.title} resume example</a>
+              </h2>
+              <p style="font-size:.9rem;">{j.intro.slice(0, 110)}…</p>
+              <a class="cr-btn cr-btn--tiny" href={withBase(`/examples/${j.slug}/`)}>
+                View example →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <h2 style="margin-top:34px;">FAQ</h2>
+      {faqs.map((f) => (
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:600;">{f.question}</summary>
+          <p style="margin-top:8px;">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</Layout>

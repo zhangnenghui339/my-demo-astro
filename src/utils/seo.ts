@@ -115,3 +115,59 @@ export function softwareApplicationSchema(name: string) {
     },
   };
 }
+
+/**
+ * GEO 三叠加：单个 JSON-LD @graph 内输出 Article + ItemList + FAQPage。
+ * 用于榜单页与全部 pSEO 页（全叠加页面的 AI 引用率显著高于单一 Article）。
+ */
+export function stackedSchema({
+  headline,
+  description,
+  path,
+  datePublished,
+  dateModified,
+  items,
+  faqs,
+}: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished?: string;
+  dateModified?: string;
+  items: Array<{ name: string; url?: string }>;
+  faqs: Array<{ question: string; answer: string }>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline,
+        description,
+        mainEntityOfPage: absoluteUrl(path),
+        author: { "@type": "Organization", name: "CareerRadar", url: absoluteUrl("/") },
+        publisher: { "@type": "Organization", name: "CareerRadar", logo: { "@type": "ImageObject", url: absoluteUrl("/logo.svg") } },
+        ...(datePublished ? { datePublished } : {}),
+        ...(dateModified ? { dateModified } : {}),
+      },
+      {
+        "@type": "ItemList",
+        name: headline,
+        itemListElement: items.map((item, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: item.name,
+          ...(item.url ? { url: absoluteUrl(item.url) } : {}),
+        })),
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      },
+    ],
+  };
+}

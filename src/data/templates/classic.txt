@@ -1,0 +1,76 @@
+============================================================
+ CAREERRADAR TEMPLATE 01 - ATS CLASSIC (UNIVERSAL)
+ Single-column layout that parses cleanly in every major ATS
+============================================================
+ HOW TO USE
+ 1. Replace every [BRACKETED] field with your own content,
+    then delete any section you don't need.
+ 2. Keep the single-column structure. No tables, text boxes,
+    columns, photos, or icons.
+ 3. Keep the section titles exactly as written - parsers are
+    trained on these standard headings.
+ 4. Paste into Word/Google Docs, set font to Calibri or
+    Arial 11pt, save as .docx or export a text-based PDF.
+ 5. Verify the final file with the free ATS checker at
+    https://careerradar.io
+============================================================
+
+
+[FIRST NAME] [LAST NAME]
+[City, State/Country] | [Phone] | [email@example.com] | linkedin.com/in/[handle]
+
+PROFESSIONAL SUMMARY
+[Job title] with [X]+ years of experience in [industry or domain].
+Proven record of [strongest achievement theme, e.g., reducing costs,
+growing revenue, leading teams] including [one quantified proof point,
+e.g., "cutting processing time 40% across 3 departments"]. Seeking to
+apply [top 2-3 skills matching the job posting] as [target job title]
+at [Company].
+
+SKILLS
+Core: [skill 1], [skill 2], [skill 3], [skill 4], [skill 5]
+Tools: [tool 1], [tool 2], [tool 3], [tool 4]
+Certifications: [certification 1], [certification 2]
+* Mirror the exact wording of the target job description for
+  every skill you genuinely have.
+
+WORK EXPERIENCE
+
+[Job Title]
+[Company Name] | [City, State] | [MM/YYYY] - [Present or MM/YYYY]
+- [Action verb] [what you did] resulting in [quantified outcome].
+- [Action verb] [project or process], improving [metric] by [X%].
+- [Action verb] [team/stakeholder scope], delivering [result] under
+  [constraint, e.g., budget, deadline].
+- [Optional 4th bullet - keep 3-5 bullets per role.]
+
+[Previous Job Title]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- [Action verb] [responsibility] achieving [outcome].
+- [Action verb] [initiative] that [measurable impact].
+- [Action verb] [collaboration or leadership example].
+
+[Earlier Job Title]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- [One to two bullets are enough for roles older than 8 years.]
+
+EDUCATION
+[Degree], [Field of Study]
+[University Name] | [City, State] | [YYYY]
+[Optional: GPA if above 3.5 and graduated within 3 years; honors;
+relevant coursework for early-career candidates.]
+
+ADDITIONAL
+[Optional section: languages, volunteer leadership, publications,
+professional memberships. Delete if empty.]
+
+
+============================================================
+ BULLET FORMULA (delete before sending)
+ [Strong verb] + [specific task/project] + [tool or method]
+ + [quantified result]
+ Weak:   "Responsible for monthly reports"
+ Strong: "Automated monthly reporting in Excel + Power Query,
+          cutting preparation time from 2 days to 3 hours"
+ Verify every number - you must defend it in the interview.
+============================================================

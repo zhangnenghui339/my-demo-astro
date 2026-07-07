@@ -1,0 +1,19 @@
+---
+/**
+ * 统一 affiliate 出站：走 /api/outbound 做服务端点击归因（90天红线CTR分子）。
+ * 原始分佣链接只存在于 functions/api/outbound.ts，不暴露在 HTML。
+ */
+interface Props {
+  tool: string;          // affiliates 白名单 slug
+  pos?: "table" | "card" | "cta";
+  class?: string;
+  style?: string;
+}
+const { tool, pos = "cta", class: className = "cr-btn cr-btn--sm", style } = Astro.props;
+const from = Astro.url.pathname;
+const href = `/api/outbound?tool=${encodeURIComponent(tool)}&from=${encodeURIComponent(from)}&pos=${pos}`;
+---
+
+<a class={className} style={style} href={href} rel="sponsored nofollow" target="_blank">
+  <slot>Visit {tool} →</slot>
+</a>

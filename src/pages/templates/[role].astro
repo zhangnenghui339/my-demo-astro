@@ -1,0 +1,118 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import LeadMagnetGate from "../../components/LeadMagnetGate.astro";
+import { templates, type ResumeTemplate } from "../../data/templates";
+import { atsJobs } from "../../data/ats-jobs";
+import { articleSchema, faqSchema, breadcrumbSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+export function getStaticPaths() {
+  return templates.map((t) => ({ params: { role: t.slug }, props: { t } }));
+}
+
+interface Props {
+  t: ResumeTemplate;
+}
+const { t } = Astro.props;
+const path = `/templates/${t.slug}/`;
+
+// 内链只指向真实页面（红线7）
+const checker = t.atsCheckerSlug ? atsJobs.find((a) => a.slug === t.atsCheckerSlug) ?? null : null;
+
+const faqs = [
+  {
+    question: "How do I use this template?",
+    answer:
+      "Copy the plain text below into Word or Google Docs, set the font to Calibri or Arial 11pt, replace every bracketed field with your own content, delete the instructions block, and export as .docx or a text-based PDF.",
+  },
+  {
+    question: "Will this template pass ATS screening?",
+    answer:
+      "The layout rules it implements — single column, standard section titles, contact info in the body, month/year dates — are exactly what ATS parsers are built to read. Content still decides interviews: fill it with quantified, honest bullets.",
+  },
+  {
+    question: "Can I get all five templates at once?",
+    answer:
+      "Yes — the download button on this page gets you the full bundle (all five templates) in one zip.",
+  },
+];
+
+const jsonLd = [
+  articleSchema({ headline: t.title, description: t.description, path }),
+  faqSchema(faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Templates", path: "/templates/" },
+    { name: t.role, path },
+  ]),
+];
+---
+
+<Layout title={`${t.title} - CareerRadar`} description={t.description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">
+        <a href={withBase("/templates/")}>Templates</a> / {t.role}
+      </p>
+      <h1 class="cr-h1" style="font-size:clamp(1.9rem,4.2vw,3rem);margin-top:12px;max-width:24ch;">
+        {t.title}
+      </h1>
+
+      <QuickAnswer answer={t.quickAnswer} lastVerified="2026-07" />
+
+      <h2 style="margin-top:30px;">What makes this template work</h2>
+      <ul>
+        {t.highlights.map((h) => <li>{h}</li>)}
+      </ul>
+
+      <div style="margin-top:24px;">
+        <LeadMagnetGate
+          variant="templates"
+          sourceTag={t.sourceTag}
+          ctaText="Download all 5 templates (.zip)"
+          helperText="The full ATS-ready bundle — this template plus four more roles."
+          modalTitle="ATS-Ready Resume Templates (5-pack)"
+          modalCopy="Universal, software engineer, product manager, marketing, and data analyst templates in one zip."
+          modalId={`tpl-${t.slug}`}
+        />
+      </div>
+
+      <h2 style="margin-top:34px;">The template (copy it straight from here)</h2>
+      <p style="font-size:.9rem;opacity:.85;">
+        Free to read and copy — the download above is just the convenient bundle.
+      </p>
+      <pre
+        style="white-space:pre-wrap;background:rgba(0,0,0,.04);border:1px solid var(--line);border-radius:10px;padding:18px;font-size:.82rem;line-height:1.55;overflow-x:auto;"
+      >{t.body}</pre>
+
+      <h2 style="margin-top:34px;">FAQ</h2>
+      {faqs.map((f) => (
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:600;">{f.question}</summary>
+          <p style="margin-top:8px;">{f.answer}</p>
+        </details>
+      ))}
+
+      <div style="margin-top:32px;display:grid;gap:12px;">
+        {checker && (
+          <a class="cr-btn" href={withBase(`/tools/ats-checker/${checker.slug}/`)}>
+            Verify your finished resume: free {t.role} ATS check →
+          </a>
+        )}
+        {!checker && (
+          <a class="cr-btn" href={withBase("/tools/ats-checker/")}>
+            Verify your finished resume with the free ATS checker →
+          </a>
+        )}
+        <a
+          class="cr-btn"
+          style="background:transparent;color:#a9752a;border:1px solid var(--line);"
+          href={withBase("/best/ai-resume-builder/")}
+        >
+          Prefer a builder to do the formatting? See tested picks →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

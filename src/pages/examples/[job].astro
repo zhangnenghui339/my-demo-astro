@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import { atsJobs, type AtsJob } from "../../data/ats-jobs";
+import { templates } from "../../data/templates";
+import { articleSchema, faqSchema, breadcrumbSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+export function getStaticPaths() {
+  return atsJobs.map((job) => ({ params: { job: job.slug }, props: { job } }));
+}
+
+interface Props {
+  job: AtsJob;
+}
+const { job } = Astro.props;
+const path = `/examples/${job.slug}/`;
+
+const title = `${job.title} Resume Example (ATS Keywords + Sample Language, 2026)`;
+const description = `${job.title} resume example with the exact keywords recruiters search, the pitfalls that sink ${job.title.toLowerCase()} resumes, and sample achievement language you can adapt.`;
+
+const quickAnswer = `A strong ${job.title.toLowerCase()} resume pairs the exact vocabulary recruiters search (${job.atsKeywords
+  .slice(0, 3)
+  .join(", ")}, and more below) with quantified bullets, in a single-column layout that parses cleanly. ${job.intro}`;
+
+// 参考意图 → 交易意图漏斗：底部 CTA 指向同职位 Template（战略内链规则）
+const template =
+  templates.find((t) => t.atsCheckerSlug === job.slug) ??
+  templates.find((t) => t.slug === "ats-classic") ??
+  null;
+
+const faqs = [
+  {
+    question: `What keywords should a ${job.title.toLowerCase()} resume include?`,
+    answer: `Mirror the target job description first. The recurring searches for this role include: ${job.atsKeywords.join(", ")}. Use each term only where it honestly applies — interviews test every keyword.`,
+  },
+  {
+    question: `What ruins most ${job.title.toLowerCase()} resumes?`,
+    answer: job.commonPitfalls.join(" "),
+  },
+];
+
+const jsonLd = [
+  articleSchema({ headline: title, description, path }),
+  faqSchema(faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Examples", path: "/examples/" },
+    { name: job.title, path },
+  ]),
+];
+---
+
+<Layout title={`${title} - CareerRadar`} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">
+        <a href={withBase("/examples/")}>Examples</a> / {job.title}
+      </p>
+      <h1 class="cr-h1" style="font-size:clamp(1.9rem,4.2vw,3rem);margin-top:12px;max-width:24ch;">
+        {job.title} resume example
+      </h1>
+
+      <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <h2 style="margin-top:30px;">Keywords recruiters search for {job.title.toLowerCase()}s</h2>
+      <p>Exact strings win ATS keyword searches — mirror these where they honestly apply:</p>
+      <ul>
+        {job.atsKeywords.map((k) => <li><code>{k}</code></li>)}
+      </ul>
+
+      <h2 style="margin-top:30px;">Pitfalls that sink {job.title.toLowerCase()} resumes</h2>
+      <ul class="cr-cons">
+        {job.commonPitfalls.map((p) => <li>{p}</li>)}
+      </ul>
+
+      <h2 style="margin-top:30px;">Sample resume language</h2>
+      <p style="font-size:.9rem;opacity:.85;">
+        Adapt the shape, replace every number with your own — interviews test each claim.
+      </p>
+      <pre
+        style="white-space:pre-wrap;background:rgba(0,0,0,.04);border:1px solid var(--line);border-radius:10px;padding:18px;font-size:.85rem;line-height:1.55;"
+      >{job.resumeExample}</pre>
+
+      <h2 style="margin-top:30px;">How this role reads in real job postings</h2>
+      <p style="font-size:.9rem;opacity:.85;">
+        Sample posting language — the vocabulary source your resume should mirror:
+      </p>
+      <pre
+        style="white-space:pre-wrap;background:rgba(0,0,0,.04);border:1px solid var(--line);border-radius:10px;padding:18px;font-size:.85rem;line-height:1.55;"
+      >{job.jobDescriptionSample}</pre>
+
+      <h2 style="margin-top:30px;">FAQ</h2>
+      {faqs.map((f) => (
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:600;">{f.question}</summary>
+          <p style="margin-top:8px;">{f.answer}</p>
+        </details>
+      ))}
+
+      <div style="margin-top:32px;display:grid;gap:12px;">
+        {template && (
+          <a class="cr-btn" href={withBase(`/templates/${template.slug}/`)}>
+            Build yours: free {template.role === "Any role" ? "ATS-safe" : job.title} resume template →
+          </a>
+        )}
+        <a
+          class="cr-btn"
+          style="background:transparent;color:#a9752a;border:1px solid var(--line);"
+          href={withBase(`/tools/ats-checker/${job.slug}/`)}
+        >
+          Then verify it: free {job.title} ATS check →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

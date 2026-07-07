@@ -1,0 +1,85 @@
+============================================================
+ CAREERRADAR TEMPLATE 04 - MARKETING
+ ATS-safe single column, works for growth, performance,
+ content, brand, and lifecycle roles
+============================================================
+ HOW TO USE
+ 1. Replace [BRACKETED] fields; keep section titles as-is.
+ 2. Marketing recruiters search by CHANNEL and TOOL names.
+    List the exact platforms you can run (Google Ads, Meta
+    Ads, HubSpot, Klaviyo...) - generic "digital marketing"
+    is nearly unsearchable.
+ 3. Every bullet needs one of: ROAS/CAC/CVR/CTR, pipeline or
+    revenue, traffic or ranking, list growth, budget managed.
+ 4. No tables/columns/icons. Verify the export at
+    https://careerradar.io
+============================================================
+
+
+[FIRST NAME] [LAST NAME]
+[City, State] | [Phone] | [email@example.com] | linkedin.com/in/[handle] | [portfolio-url]
+
+PROFESSIONAL SUMMARY
+[Specialty] Marketer with [X]+ years driving [growth type, e.g.,
+demand generation for B2B SaaS / DTC e-commerce revenue] across
+[core channels]. Managed [$X]+ in annual ad spend and delivered
+[headline result, e.g., "3.4x blended ROAS" or "grew organic traffic
+from 40K to 320K monthly sessions"]. Strong in [2-3 matching
+specialties from the posting].
+
+SKILLS
+Channels: [e.g., Google Ads, Meta Ads, TikTok Ads, SEO, email/CRM,
+affiliate, ABM]
+Tools: [e.g., GA4, Google Search Console, Semrush, Ahrefs, HubSpot,
+Klaviyo, Salesforce, Looker Studio]
+Analytics: [e.g., attribution modeling, cohort analysis, incrementality
+testing, SQL basics, Excel/Sheets modeling]
+Content & AI: [e.g., content strategy, CRO, AI-assisted content
+workflows, marketing automation]
+
+WORK EXPERIENCE
+
+[Job Title, e.g., Growth Marketing Manager]
+[Company Name] | [City, State or Remote] | [MM/YYYY] - Present
+- Own [channel mix] with [$X/month] budget; improved blended
+  CAC from [$X] to [$Y] while scaling spend [X%].
+- Built [program, e.g., SEO content engine]: [N] assets shipped,
+  driving [organic sessions/leads] up [X%] YoY.
+- Ran [N] landing page and creative tests per quarter; winning
+  variants lifted CVR from [X%] to [Y%].
+- Launched [lifecycle program, e.g., 6-touch onboarding flow] in
+  [tool], raising [activation/repeat purchase] by [X%].
+- Reported [channel/pipeline] performance to [leadership level];
+  reallocated [X%] of budget to [channel], adding [$X] revenue.
+
+[Job Title, e.g., Digital Marketing Specialist]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- Managed [channel] end-to-end: [scale metric] and [efficiency
+  metric, e.g., "$40K/mo spend at 4.1 ROAS"].
+- Grew [email list / social audience] from [X] to [Y] in
+  [timeframe] via [method].
+- Partnered with [sales/product] to [outcome, e.g., "launch ABM
+  pilot sourcing $600K pipeline in two quarters"].
+
+[Job Title, e.g., Marketing Coordinator]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- [1-2 bullets; emphasize execution reliability and early wins.]
+
+EDUCATION
+[Degree], [Field]
+[University Name] | [YYYY]
+
+CERTIFICATIONS (optional)
+[e.g., Google Ads Search, GA4, Meta Blueprint, HubSpot | YYYY]
+
+
+============================================================
+ MARKETING BULLET FORMULA (delete before sending)
+ [Verb] + [channel/program] + [budget or scale] + [efficiency
+ metric] + [business result]
+ Weak:   "Handled social media accounts"
+ Strong: "Scaled Meta Ads from $8K to $45K/month while holding
+          ROAS above 3.2, adding $1.4M attributed revenue"
+ State attribution honestly (platform-attributed vs blended) -
+ senior interviewers always ask which one you mean.
+============================================================

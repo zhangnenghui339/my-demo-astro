@@ -1,0 +1,86 @@
+============================================================
+ CAREERRADAR TEMPLATE 02 - SOFTWARE ENGINEER
+ ATS-safe single column, optimized for technical screens
+============================================================
+ HOW TO USE
+ 1. Replace [BRACKETED] fields; keep section titles as-is.
+ 2. Recruiters keyword-search stacks: list every language,
+    framework, and platform you can interview on - using the
+    exact names from the job posting (e.g., "React" and
+    "React.js" are different search terms; include the one
+    the posting uses).
+ 3. No tables/columns/icons. Calibri or Arial 11pt.
+ 4. Verify the export at https://careerradar.io
+============================================================
+
+
+[FIRST NAME] [LAST NAME]
+[City, State] | [Phone] | [email@example.com] | linkedin.com/in/[handle] | github.com/[handle]
+
+PROFESSIONAL SUMMARY
+[Level] Software Engineer with [X]+ years building [type of systems,
+e.g., distributed backend services / consumer mobile apps] in
+[primary languages]. Shipped [notable scale proof, e.g., "services
+handling 50M requests/day" or "features used by 2M MAU"]. Strong in
+[2-3 specialties matching the posting, e.g., API design, performance
+optimization, cloud infrastructure].
+
+TECHNICAL SKILLS
+Languages: [e.g., Python, Go, TypeScript, C++, SQL]
+Frameworks: [e.g., React, Node.js, Django, Spring Boot]
+Cloud & Infra: [e.g., AWS (EC2, S3, Lambda), Docker, Kubernetes, Terraform]
+Data: [e.g., PostgreSQL, Redis, Kafka, Elasticsearch]
+Practices: [e.g., CI/CD, TDD, code review, incident response, system design]
+AI Tooling: [e.g., LLM API integration, RAG pipelines, AI-assisted
+development workflow - increasingly searched by recruiters in 2026]
+
+WORK EXPERIENCE
+
+[Job Title, e.g., Senior Software Engineer]
+[Company Name] | [City, State or Remote] | [MM/YYYY] - Present
+- Designed and shipped [system/feature] serving [scale metric],
+  reducing [latency/cost/errors] by [X%].
+- Led migration from [old stack] to [new stack], cutting
+  [deploy time / infra cost] by [X%] across [N] services.
+- Owned [on-call/incident scope]; drove MTTR from [X] to [Y] by
+  [specific action, e.g., adding tracing and runbooks].
+- Mentored [N] engineers; introduced [practice, e.g., design review
+  process] adopted by [N] teams.
+
+[Job Title, e.g., Software Engineer]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- Built [feature/service] in [stack] used by [N users / N teams],
+  increasing [metric] by [X%].
+- Improved test coverage from [X%] to [Y%], cutting production
+  regressions by [X%] quarter-over-quarter.
+- Collaborated with [product/design/data] to deliver [project]
+  [ahead of schedule / within budget].
+
+[Job Title, e.g., Junior Developer]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- [1-2 bullets; emphasize growth trajectory and fundamentals.]
+
+PROJECTS (optional - strongest for early-career or career changers)
+[Project Name] | [github.com/handle/repo or live URL]
+- [What it does, stack used, and one usage/impact number,
+  e.g., "CLI tool with 400+ GitHub stars" or "800 weekly users".]
+
+EDUCATION
+[Degree], [Field, e.g., Computer Science]
+[University Name] | [YYYY]
+[Optional: relevant coursework, honors - early career only.]
+
+CERTIFICATIONS (optional)
+[e.g., AWS Solutions Architect Associate, CKA | YYYY]
+
+
+============================================================
+ SWE BULLET FORMULA (delete before sending)
+ [Verb] + [what you built/changed] + [stack] + [scale] + [impact]
+ Weak:   "Worked on backend services"
+ Strong: "Rebuilt order-processing service in Go + Kafka,
+          raising throughput 3x (2K -> 6K orders/min) while
+          cutting infra spend 22%"
+ Interviewers probe every number - keep an evidence note per
+ bullet (dashboard link, PR, postmortem) in a private doc.
+============================================================

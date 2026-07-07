@@ -1,0 +1,85 @@
+============================================================
+ CAREERRADAR TEMPLATE 03 - PRODUCT MANAGER
+ ATS-safe single column, outcome-first structure
+============================================================
+ HOW TO USE
+ 1. Replace [BRACKETED] fields; keep section titles as-is.
+ 2. PM resumes live or die on outcomes: every bullet needs a
+    metric (adoption, revenue, retention, efficiency) or a
+    scale marker (users, ARR, team size).
+ 3. Mirror the posting's vocabulary: "roadmap", "discovery",
+    "GTM", "OKRs", "stakeholder management", "A/B testing" -
+    use whichever terms the job description uses.
+ 4. No tables/columns/icons. Verify the export at
+    https://careerradar.io
+============================================================
+
+
+[FIRST NAME] [LAST NAME]
+[City, State] | [Phone] | [email@example.com] | linkedin.com/in/[handle]
+
+PROFESSIONAL SUMMARY
+Product Manager with [X]+ years owning [product type, e.g., B2B SaaS
+platforms / consumer mobile products] from discovery to launch.
+Shipped [N] products/features driving [headline outcome, e.g., "$8M
+incremental ARR" or "31% lift in D30 retention"]. Strong in
+[2-3 matching specialties, e.g., data-informed prioritization,
+platform strategy, AI feature development].
+
+SKILLS
+Product: roadmap planning, user research, product discovery, PRD
+writing, OKR setting, go-to-market strategy, pricing, experimentation
+(A/B testing)
+Analytics: [e.g., SQL, Amplitude, Mixpanel, Looker, GA4]
+Collaboration: [e.g., Jira, Figma, Confluence, agile/scrum]
+AI/Emerging: [e.g., LLM feature scoping, prompt design, AI evaluation
+metrics - a 2026 differentiator; include only if true]
+
+WORK EXPERIENCE
+
+[Job Title, e.g., Senior Product Manager]
+[Company Name] | [City, State or Remote] | [MM/YYYY] - Present
+- Own [product/area] with [scale: N users / $X ARR / N-person squad];
+  grew [core metric] by [X%] in [timeframe].
+- Led discovery for [initiative]: [N] user interviews and [data
+  source] analysis reframed the problem, cutting scope [X%] while
+  preserving [Y%] of projected impact.
+- Shipped [feature] with [eng/design team size]; drove [adoption
+  metric, e.g., "42% weekly feature adoption in 60 days"].
+- Defined and ran [experiment program]; [N] A/B tests per quarter,
+  with winners adding [metric impact].
+- Aligned [stakeholder groups, e.g., sales, legal, support] on
+  [decision], unblocking [launch/deal/compliance outcome].
+
+[Job Title, e.g., Product Manager]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- Launched [product] from zero to [traction metric] in [timeframe].
+- Reduced [pain point, e.g., onboarding drop-off] by [X%] through
+  [method, e.g., funnel analysis + 3 iterative releases].
+- Partnered with [function] to [outcome, e.g., "cut support tickets
+  28% by shipping self-serve billing"].
+
+[Job Title, e.g., Associate PM / prior function]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- [1-2 bullets. Career changers: translate prior-role wins into
+  product language - user insight, prioritization, delivery.]
+
+EDUCATION
+[Degree], [Field]
+[University Name] | [YYYY]
+
+CERTIFICATIONS (optional)
+[e.g., Pragmatic Institute PMC, Reforge programs | YYYY]
+
+
+============================================================
+ PM BULLET FORMULA (delete before sending)
+ [Verb] + [product decision] + [method/evidence] + [business
+ outcome]
+ Weak:   "Managed the product roadmap"
+ Strong: "Re-sequenced the H2 roadmap after churn-cohort
+          analysis, shipping retention fixes first - NRR
+          improved from 96% to 104% in two quarters"
+ Rule: metrics you influenced, stated honestly ("contributed
+ to", "drove", "owned") - the interview will test attribution.
+============================================================

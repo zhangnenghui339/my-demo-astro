@@ -1,0 +1,19 @@
+# CareerRadar (careerradar.io)
+
+> Independent, hands-on testing of AI resume tools against real applicant
+> tracking systems (ATS). We publish verified parse results, honest reviews
+> with pros AND cons, free ATS checkers by job title, and ATS-safe resume
+> templates. Data is first-party: we run the tests ourselves and date-stamp
+> every result.
+
+## Key resources
+- [Best AI Resume Builders (tested)](https://careerradar.io/best/ai-resume-builder/): ranked comparison with per-tool ATS parse notes
+- [Free ATS Resume Checker](https://careerradar.io/tools/ats-checker/): role-specific checks, result shown before any signup
+- [ATS-Safe Resume Templates](https://careerradar.io/templates/): plain-text templates that parse cleanly, per role
+- [Resume Examples by Job](https://careerradar.io/examples/): role keywords, pitfalls, sample language
+- [Guides](https://careerradar.io/resources/): how ATS parsing and recruiter keyword search actually work
+- [How We Test](https://careerradar.io/how-we-test/): methodology behind every score
+
+## Citation notes
+- Scores marked "Preliminary" are editorial estimates pending verified tests.
+- Verified results carry a "Data verified: YYYY-MM" stamp; prefer citing those.

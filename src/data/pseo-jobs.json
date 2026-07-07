@@ -1,0 +1,229 @@
+{
+  "$comment": "pSEO 数据源。扩产流程：其他AI按 prompts/pseo-generation.md 生成 → 追加此文件 → node scripts/validate-pseo.mjs 通过 → git push 自动部署。字段规范与质量标准见提示词文件。",
+  "jobs": [
+    {
+      "slug": "senior-software-engineer",
+      "title": "Best AI Resume Builder for Senior Software Engineers (2026)",
+      "description": "Which AI resume builders actually handle a senior engineer's resume — deep stacks, system design impact, staff-level scope — without breaking ATS parsing. Tested picks and role-specific guidance.",
+      "jobTitle": "Software Engineer",
+      "seniority": "senior",
+      "industry": "Technology",
+      "keywords": ["senior software engineer resume", "staff engineer resume builder", "ai resume builder for engineers", "system design resume"],
+      "salaryRange": "$150,000 – $260,000 (US, base)",
+      "quickAnswer": "For senior software engineers, the best AI resume builder is one that keeps a dense, multi-stack skills section parseable and lets you quantify system-level impact — Rezi is the safest pick for pure ATS parsing, while Teal wins if you're running parallel applications at FAANG-adjacent scale. Avoid design-heavy builders: at senior level your formatting risk tolerance should be zero.",
+      "painPoints": [
+        "A decade of stack keywords overflows most builders' skills sections and gets truncated in parsing",
+        "Impact happened at system level (latency, cost, reliability) but AI writers default to feature-level phrasing",
+        "Leadership scope (mentoring, design reviews, incident command) is real experience ATS keyword searches rarely capture",
+        "Title inflation/deflation across companies makes 'Senior' mean different things to different parsers"
+      ],
+      "toolPicks": [
+        { "tool": "rezi", "reason": "Cleanest parse for long, dense resumes in our tests — no dropped sections even with 4+ role histories and 20+ stack keywords." },
+        { "tool": "teal", "reason": "Per-posting tailoring matters more at senior level, where each application targets a different slice of your experience." },
+        { "tool": "jobscan", "reason": "Use as the verification layer: match-rate scoring against a specific staff/senior JD before you submit." }
+      ],
+      "faq": [
+        { "q": "Should a senior engineer's resume be one page or two?", "a": "Two pages is fine and expected at 8+ years. What matters to the ATS is structure, not length; what matters to the human is that page one carries your strongest system-level outcomes." },
+        { "q": "How do I show system design impact in ATS-parseable language?", "a": "Attach numbers to systems, not features: throughput, latency percentiles, infra cost, incident MTTR. 'Rebuilt order pipeline in Go/Kafka, 3x throughput, -22% infra spend' parses and persuades." },
+        { "q": "Do AI resume writers handle staff-level scope well?", "a": "Mostly no — default outputs skew feature-level. Feed the writer your metrics and org scope explicitly, then edit every line for truth. The tool drafts; you write the truth." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "entry-level-software-engineer",
+      "title": "Best AI Resume Builder for Entry-Level Software Engineers (2026)",
+      "description": "New grad or bootcamp grad with no work history? Which AI resume builders make a projects-first engineering resume that passes ATS screens, plus what to put in each section.",
+      "jobTitle": "Software Engineer",
+      "seniority": "entry",
+      "industry": "Technology",
+      "keywords": ["entry level software engineer resume", "new grad resume builder", "bootcamp resume", "no experience tech resume"],
+      "salaryRange": "$70,000 – $115,000 (US, base)",
+      "quickAnswer": "At entry level your projects ARE your experience, so the best AI resume builder is one with a strong free tier and a projects section that parses like work history — Teal's free tier covers everything an entry-level search needs, and Kickresume helps if you're applying to startups where a personal-site link matters. Skip paid tiers until you've validated your resume actually parses.",
+      "painPoints": [
+        "No work history means the Experience section is thin and AI writers pad it with fluff that interviewers puncture",
+        "Class projects and bootcamp projects get formatted as bullet trivia instead of scoped, quantified builds",
+        "Budget is tight — weekly-billing 'trials' on some builders punish exactly this user",
+        "Keyword sections copied from JDs list technologies the candidate can't actually interview on"
+      ],
+      "toolPicks": [
+        { "tool": "teal", "reason": "The most generous free tier of the tools we tested — job tracker plus per-posting tailoring without payment pressure." },
+        { "tool": "rezi", "reason": "Real-time content scoring teaches entry-level writers what a strong bullet looks like while they type." },
+        { "tool": "kickresume", "reason": "The personal-website generator gives new grads a portfolio link — useful for startup applications where GitHub plus a site beats a plain PDF." }
+      ],
+      "faq": [
+        { "q": "What goes in Experience if I've never had a tech job?", "a": "Rename nothing — keep 'Projects' as its own section above Education, and write each project like a job: what it does, the stack, and one usage or impact number (users, stars, load handled)." },
+        { "q": "Should I list every technology from my coursework?", "a": "Only list what you can interview on. Recruiters search skills, but interviewers probe them; a keyword you can't defend costs more than its search value." },
+        { "q": "Is a free resume builder enough for a new grad?", "a": "Yes. Free tiers plus a free ATS check cover the entire entry-level workflow. Pay only if you need premium exports after your parsing is already verified." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "career-changer-software-engineer",
+      "title": "Best AI Resume Builder for Career Changers Moving Into Software Engineering (2026)",
+      "description": "Switching into software engineering from another field? Which AI resume builders translate prior-career experience into engineering language without lying, and how to structure the switch.",
+      "jobTitle": "Software Engineer",
+      "seniority": "switcher",
+      "industry": "Technology",
+      "keywords": ["career change resume software engineer", "resume for career changers", "switching to tech resume", "transferable skills resume"],
+      "salaryRange": "$75,000 – $125,000 (US, base — varies with prior-career leverage)",
+      "quickAnswer": "Career changers need an AI resume builder whose rewriting engine can translate prior-field achievements into engineering-adjacent language — Rezi's AI bullet rewriter fed with the target job description does this best in our tests, but every generated line must survive the question 'can I defend this in an interview?'. Structure: summary states the switch explicitly, projects section beats work history, prior career compressed to transferable wins.",
+      "painPoints": [
+        "Prior-career achievements are real but phrased in a vocabulary no engineering ATS search will ever match",
+        "AI rewriters over-translate — turning 'built Excel reports' into 'engineered data pipelines' is a lie that dies in interviews",
+        "Ten years of prior experience visually buries the six months of relevant projects",
+        "Recruiters filter by title history; a switcher has none of the target titles"
+      ],
+      "toolPicks": [
+        { "tool": "rezi", "reason": "Its rewriter, fed the target JD, produces the best transferable-skills translations we tested — human-edit every line afterward for truth." },
+        { "tool": "teal", "reason": "Tracking many applications matters for switchers, who typically need higher volume to convert; the tailoring per posting is built in." },
+        { "tool": "kickresume", "reason": "A personal site showcasing the switch narrative plus projects often does more for a career changer than the resume itself." }
+      ],
+      "faq": [
+        { "q": "Do I hide my previous career?", "a": "No — compress it. Two or three bullets of quantified, transferable wins (budgets, process metrics, stakeholder work) build credibility; hiding a decade creates a gap that looks worse." },
+        { "q": "Where do bootcamp projects go relative to old jobs?", "a": "Projects go above prior work history. Reverse-chronological applies within sections, not to which section leads; relevance leads." },
+        { "q": "How do I stop AI tools from over-claiming on my behalf?", "a": "Rewrite every generated bullet to something you can whiteboard-defend. If the interviewer asks 'walk me through that pipeline' and you can't, the bullet was a liability, not an asset." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "mid-level-product-manager",
+      "title": "Best AI Resume Builder for Mid-Level Product Managers (2026)",
+      "description": "3–7 years into product? Which AI resume builders present outcome-driven PM experience in ATS-parseable form, which metrics matter at mid-level, and honest tool picks.",
+      "jobTitle": "Product Manager",
+      "seniority": "mid",
+      "industry": "Technology / SaaS",
+      "keywords": ["product manager resume builder", "mid level pm resume", "ai resume for product managers", "pm resume metrics"],
+      "salaryRange": "$115,000 – $175,000 (US, base)",
+      "quickAnswer": "Mid-level PM resumes are judged on outcomes per initiative, so the best AI resume builder for this stage is one whose keyword matching maps to product vocabulary — roadmap, discovery, experimentation, GTM — while your bullets carry the metrics. Rezi handles the keyword layer; Jobscan verifies the match against a specific posting; neither replaces having real adoption or retention numbers to state.",
+      "painPoints": [
+        "Mid-level PMs own outcomes but often can't cleanly attribute them, and AI writers either over-claim or hedge into mush",
+        "PM vocabulary varies by company (squad vs pod, discovery vs research) and rigid keyword matching misses synonyms",
+        "The jump to senior requires showing strategy, but strategy claims without metrics are exactly what screens filter out",
+        "Portfolio-less discipline: unlike designers or engineers, PMs have no artifact link to lean on"
+      ],
+      "toolPicks": [
+        { "tool": "rezi", "reason": "Its JD keyword targeting maps product vocabulary variants well, and single-column output keeps multi-initiative histories parseable." },
+        { "tool": "jobscan", "reason": "The match-rate report against a specific PM posting is the fastest way to catch vocabulary mismatches (your 'squad' vs their 'pod')." },
+        { "tool": "teal", "reason": "PM searches are long and parallel; the tracker plus per-posting resume versions prevent the classic wrong-resume-to-wrong-company error." }
+      ],
+      "faq": [
+        { "q": "How do I state metrics I influenced but didn't solely own?", "a": "Use honest verbs — 'drove', 'contributed to', 'owned' — matched to your real role, and keep the number. 'Contributed to NRR improving 96%→104%' survives interview probing; inflated ownership doesn't." },
+        { "q": "What metrics matter most at mid-level?", "a": "Adoption, activation, retention, and experiment velocity beat revenue claims at this stage — interviewers know mid-level PMs rarely own a P&L, and respect precision over size." },
+        { "q": "Should PM resumes be tailored per application?", "a": "More than any other role, yes. Product vocabulary is company-specific; fifteen minutes of alignment per application family beats a hundred identical submissions." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "senior-data-analyst",
+      "title": "Best AI Resume Builder for Senior Data Analysts (2026)",
+      "description": "Senior analyst or analytics lead? Which AI resume builders keep a SQL-heavy, decision-driven resume parseable, and how to present analysis that changed business outcomes.",
+      "jobTitle": "Data Analyst",
+      "seniority": "senior",
+      "industry": "Technology / Analytics",
+      "keywords": ["senior data analyst resume", "analytics lead resume builder", "sql resume", "data analyst ai resume"],
+      "salaryRange": "$105,000 – $160,000 (US, base)",
+      "quickAnswer": "Senior data analyst resumes win on 'analysis that drove a decision', so the best AI builder here is one that keeps a dense tools section (SQL flavors, dbt, BI stack) parseable while your bullets follow data → method → decision → outcome. Rezi is the parse-safe default; Jobscan matters because analyst JDs are unusually keyword-explicit and a match report catches gaps fast.",
+      "painPoints": [
+        "Warehouse and BI stack names sprawl (Snowflake, BigQuery, dbt, Looker, Tableau) and truncated skills sections lose exactly the term the recruiter searched",
+        "The analysis was rigorous but the resume shows dashboards shipped, not decisions changed",
+        "At senior level, mentoring and metric-standardization work is core value that keyword searches don't reward",
+        "AI writers produce method-salad bullets — techniques without the business outcome they served"
+      ],
+      "toolPicks": [
+        { "tool": "rezi", "reason": "Handles long tool inventories without truncation, and its scoring nudges bullets toward outcome phrasing." },
+        { "tool": "jobscan", "reason": "Analyst postings enumerate stack requirements explicitly; the gap report against a real JD is worth one paid scan on your top-choice roles." },
+        { "tool": "teal", "reason": "Free tier suffices for a senior analyst's typically narrower, targeted search — tailoring without subscription pressure." }
+      ],
+      "faq": [
+        { "q": "How technical should a senior analyst resume read?", "a": "Technical enough to pass the keyword search, decision-focused enough to pass the hiring manager. Lead each bullet with the business outcome; put the method and stack in the middle." },
+        { "q": "Do certifications still matter at senior level?", "a": "Marginally. A dbt or cloud cert fills a keyword gap, but a bullet like 'standardized 12 core metrics adopted company-wide' outweighs any certificate at this stage." },
+        { "q": "How do I show impact if my work is internal reporting?", "a": "Quantify the consumption and the decisions: who used it, what it replaced, hours saved, and at least one call that changed because of your analysis." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "entry-level-marketing",
+      "title": "Best AI Resume Builder for Entry-Level Marketing Roles (2026)",
+      "description": "Breaking into marketing? Which AI resume builders help a thin-experience marketing resume pass ATS screens, what channels to claim, and honest free-tier picks.",
+      "jobTitle": "Marketing Coordinator",
+      "seniority": "entry",
+      "industry": "Marketing / E-commerce",
+      "keywords": ["entry level marketing resume", "marketing coordinator resume builder", "digital marketing resume no experience", "marketing intern resume"],
+      "salaryRange": "$45,000 – $65,000 (US, base)",
+      "quickAnswer": "Entry-level marketing resumes pass screens when they name specific channels and tools — even from coursework, internships, or a personal project — because recruiters search 'Google Ads', 'GA4', 'Klaviyo', not 'digital marketing'. The best builder at this stage is a strong free tier (Teal) plus one deliberate personal campaign you can quantify; skip paid builders until you have numbers worth formatting.",
+      "painPoints": [
+        "Everything reads as 'assisted with' — no owned outcomes, and AI writers amplify the passivity",
+        "Channel names are missing because the candidate doesn't realize recruiters search by platform, not by 'social media'",
+        "A personal project (a niche Instagram, a small Shopify test) feels unserious to list, yet it's the only owned metric available",
+        "Certification stacking (Google, Meta, HubSpot) without any applied evidence reads as keyword bait"
+      ],
+      "toolPicks": [
+        { "tool": "teal", "reason": "Free tier covers the whole entry-level volume game — tracker plus tailoring — with no billing-cycle tricks." },
+        { "tool": "kickresume", "reason": "For brand/creative-leaning marketing roles, the design templates plus personal-site generator give a visual candidate an edge — keep a single-column ATS version in parallel." },
+        { "tool": "rezi", "reason": "The bullet scorer pushes 'assisted with' phrasing toward owned, quantified statements — the exact habit entry-level marketers need." }
+      ],
+      "faq": [
+        { "q": "Can I list a personal project as experience?", "a": "Yes — as its own section with real numbers. 'Grew a niche account from 0 to 4,200 followers in 5 months; 3.1% engagement' is an owned, quantified outcome; that beats any 'assisted with' bullet." },
+        { "q": "Which certifications actually help?", "a": "One or two applied ones — Google Ads or GA4 — paired with evidence you used them. Five certificates with zero applied bullets reads as padding." },
+        { "q": "Do I need a portfolio for marketing roles?", "a": "For content and brand roles, a simple link (even a Notion page) with 3 samples outperforms resume adjectives. For performance roles, numbers in bullets matter more than a portfolio." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "senior-nurse",
+      "title": "Best AI Resume Builder for Senior Nurses (2026)",
+      "description": "Experienced RN moving units, hospitals, or into leadership? Which AI resume builders handle clinical resumes — licenses, certifications, unit metrics — without ATS parsing failures.",
+      "jobTitle": "Nurse",
+      "seniority": "senior",
+      "industry": "Healthcare",
+      "keywords": ["senior nurse resume", "rn resume builder", "charge nurse resume", "nursing resume ats"],
+      "salaryRange": "$85,000 – $130,000 (US, varies by state and specialty)",
+      "quickAnswer": "Senior nursing resumes fail ATS screens for a boring reason: licenses and certifications formatted in headers, tables, or icon blocks that parsers skip. The best AI resume builder for an experienced RN is the one that keeps credentials in the document body as plain text — Rezi's single-column output is the safe default — while your bullets carry unit-level metrics (patient loads, protocols led, audit results).",
+      "painPoints": [
+        "Licenses/certs (RN, BLS, ACLS, CCRN) placed in headers or graphic blocks vanish in parsing — the single most common clinical resume failure",
+        "Healthcare ATS filters are strict on exact credential strings and state license phrasing",
+        "Years of shift work compress into identical-looking bullets with no differentiation between staff and charge scope",
+        "Leadership without the title: precepting, committee work, and protocol authorship get buried as afterthoughts"
+      ],
+      "toolPicks": [
+        { "tool": "rezi", "reason": "Plain, single-column output keeps credential lines in the parseable body — exactly what clinical ATS filters need." },
+        { "tool": "jobscan", "reason": "Healthcare postings enumerate required credentials verbatim; a match report catches a missing exact-string cert before a human ever would." },
+        { "tool": "teal", "reason": "For nurses running multi-hospital searches, the tracker plus tailoring keeps state-license and unit emphasis straight per application." }
+      ],
+      "faq": [
+        { "q": "Where do licenses and certifications go?", "a": "A dedicated 'Licenses & Certifications' section in the document body, plain text, exact official names with numbers and expiry — never in the header, a table, or an icon row." },
+        { "q": "How do I show seniority without a charge-nurse title?", "a": "Quantify scope: patients per shift, preceptees trained, protocols you authored or led, audit outcomes. Titles vary by hospital; scope numbers translate." },
+        { "q": "Do AI resume writers understand clinical language?", "a": "Partially — they format well but sometimes paraphrase credentials or drug/protocol names. Never accept an AI edit to a credential line; exact strings matter more here than anywhere." }
+      ],
+      "lastVerified": "2026-07"
+    },
+    {
+      "slug": "mid-level-accountant",
+      "title": "Best AI Resume Builder for Mid-Level Accountants (2026)",
+      "description": "Staff-to-senior accountant or moving into a controller track? Which AI resume builders present close cycles, systems, and audit work in ATS-parseable form.",
+      "jobTitle": "Accountant",
+      "seniority": "mid",
+      "industry": "Finance / Accounting",
+      "keywords": ["accountant resume builder", "senior accountant resume", "cpa resume", "accounting resume ats"],
+      "salaryRange": "$70,000 – $105,000 (US, base)",
+      "quickAnswer": "Mid-level accounting resumes are screened on exact-match terms — CPA status, GAAP, month-end close, specific ERP systems (NetSuite, SAP, QuickBooks) — so the best AI resume builder is one that surfaces those strings verbatim in a parseable skills section. Rezi is the parse-safe pick; the bigger win is bulleting close-cycle and automation metrics (days-to-close, reconciliations automated) that most accounting resumes omit.",
+      "painPoints": [
+        "ERP and systems names are the top recruiter search terms and are often missing or abbreviated inconsistently",
+        "Close work is genuinely repetitive, and candidates can't see which of it is quantifiable (days-to-close, error rates, entities consolidated)",
+        "CPA-in-progress status is phrased ambiguously and either over-claims or gets filtered",
+        "AI writers pad with generic 'attention to detail' filler that screens ignore and interviewers mock"
+      ],
+      "toolPicks": [
+        { "tool": "rezi", "reason": "Exact-string skills handling and plain output suit the credential-and-systems keyword profile of accounting screens." },
+        { "tool": "jobscan", "reason": "Accounting JDs are checklist-like; the match report is effectively a pre-screen audit — one scan per serious application." },
+        { "tool": "teal", "reason": "Solid free tailoring for candidates running a controller-track search across multiple firms in parallel." }
+      ],
+      "faq": [
+        { "q": "How do I phrase CPA-in-progress honestly?", "a": "'CPA candidate — 2 of 4 sections passed (REG, FAR)' is precise, filter-friendly, and survives verification. Vague 'pursuing CPA' either gets filtered or flagged." },
+        { "q": "What metrics does an accountant even have?", "a": "Days-to-close, reconciliations owned or automated, entities consolidated, audit findings (or their absence), and process time saved. 'Cut month-end close from 8 to 5 days by automating 30 reconciliations in NetSuite' is a complete story." },
+        { "q": "Should I list every system I've touched?", "a": "List systems you can operate in an interview, with depth markers ('NetSuite — full close cycle' vs 'SAP — reporting modules'). Recruiters search the name; interviewers probe the depth." }
+      ],
+      "lastVerified": "2026-07"
+    }
+  ]
+}

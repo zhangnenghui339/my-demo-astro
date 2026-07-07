@@ -1,0 +1,18 @@
+---
+/** Answer-first 结构：前200词 Quick Answer 块（GEO 引用弹药位）。 */
+interface Props {
+  answer: string;
+  lastVerified?: string | null;
+}
+const { answer, lastVerified = null } = Astro.props;
+---
+
+<div class="cr-verdict" data-quick-answer>
+  <p style="margin:0 0 6px;"><strong>Quick answer</strong></p>
+  <p style="margin:0;">{answer}</p>
+  {lastVerified ? (
+    <p style="margin:10px 0 0;font-size:.82rem;opacity:.75;">Data verified: {lastVerified}</p>
+  ) : (
+    <p style="margin:10px 0 0;font-size:.82rem;opacity:.75;">Preliminary — verified ATS tests in progress. <a href="/how-we-test/">How we test →</a></p>
+  )}
+</div>

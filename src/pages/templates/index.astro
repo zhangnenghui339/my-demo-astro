@@ -1,0 +1,91 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import { templates } from "../../data/templates";
+import { stackedSchema, breadcrumbSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+const title = "Free ATS-Safe Resume Templates (Plain Text, 2026) - CareerRadar";
+const description =
+  "Free plain-text resume templates that parse cleanly in every major ATS — universal, software engineer, product manager, marketing, and data analyst versions with role keyword banks.";
+
+const quickAnswer =
+  "The safest resume template for ATS screening is a single-column, plain-text layout with standard section titles, contact details in the body, and month/year dates. Below are five free templates built on those rules — one universal and four role-specific versions with recruiter-searchable keyword sections. Copy them straight from the page; no signup needed to read them.";
+
+const faqs = [
+  {
+    question: "Are fancy resume templates bad for ATS?",
+    answer:
+      "Design-heavy templates with columns, tables, icons, or graphics are the leading cause of parsing failures. If a role judges design (e.g., UX), keep two versions: a portfolio-grade one for humans and a single-column one for online applications.",
+  },
+  {
+    question: "Should I use .docx or PDF?",
+    answer:
+      "Follow the job posting first. When it doesn't specify, a text-based PDF preserves layout; .docx parses reliably everywhere. Never submit an image-based (scanned) PDF.",
+  },
+  {
+    question: "Why plain text templates?",
+    answer:
+      "Plain text is the format the ATS ultimately sees. Starting from plain text and adding minimal styling in Word or Google Docs guarantees nothing breaks in parsing — the reverse (de-styling a designed template) is where errors hide.",
+  },
+];
+
+const jsonLd = [
+  stackedSchema({
+    headline: title,
+    description,
+    path: "/templates/",
+    items: templates.map((t) => ({ name: t.title, url: `/templates/${t.slug}/` })),
+    faqs,
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Templates", path: "/templates/" },
+  ]),
+];
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <div class="cr-wrap">
+      <p class="cr-crumb">Templates</p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.4vw,3.2rem);margin-top:12px;max-width:20ch;">
+        ATS-safe resume templates, free and in plain text
+      </h1>
+      <p class="cr-meta-row">
+        Readable in full on every page — no gate to view ·
+        <a href={withBase("/resources/how-to-pass-ats-in-2026/")}>Why plain text wins →</a>
+      </p>
+
+      <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <div style="display:grid;gap:16px;margin-top:28px;">
+        {templates.map((t) => (
+          <article class="cr-card">
+            <div class="cr-card__body">
+              <p class="cr-card__tag">{t.role}</p>
+              <h2 class="cr-card__title" style="font-size:1.15rem;">
+                <a href={withBase(`/templates/${t.slug}/`)}>{t.title}</a>
+              </h2>
+              <p>{t.description}</p>
+              <ul style="font-size:.9rem;">
+                {t.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+              <a class="cr-btn cr-btn--sm" href={withBase(`/templates/${t.slug}/`)}>
+                View template →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <h2 style="margin-top:34px;">FAQ</h2>
+      {faqs.map((f) => (
+        <details style="margin-top:10px;">
+          <summary style="cursor:pointer;font-weight:600;">{f.question}</summary>
+          <p style="margin-top:8px;">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+</Layout>

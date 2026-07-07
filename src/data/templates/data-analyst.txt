@@ -1,0 +1,94 @@
+============================================================
+ CAREERRADAR TEMPLATE 05 - DATA ANALYST
+ ATS-safe single column, optimized for analytics screens
+============================================================
+ HOW TO USE
+ 1. Replace [BRACKETED] fields; keep section titles as-is.
+ 2. Analyst recruiters keyword-search the stack: SQL, Python,
+    Tableau, Power BI, dbt, Excel... List exact tool names
+    from the posting. "SQL" appears in nearly every analyst
+    search - make sure it's visible in Skills AND in bullets.
+ 3. Every bullet: what you analyzed, the method, and the
+    decision or dollar/percent outcome it drove. Analysis
+    without a decision is a hobby - show the business result.
+ 4. No tables/columns/icons. Verify the export at
+    https://careerradar.io
+============================================================
+
+
+[FIRST NAME] [LAST NAME]
+[City, State] | [Phone] | [email@example.com] | linkedin.com/in/[handle] | [portfolio or GitHub URL]
+
+PROFESSIONAL SUMMARY
+Data Analyst with [X]+ years turning [data domain, e.g., product,
+marketing, operations, financial] data into decisions for
+[company type/size]. Built [proof point, e.g., "the executive KPI
+suite used weekly by 40+ stakeholders"] and delivered analyses that
+[headline outcome, e.g., "recovered $900K in annual leakage"].
+Strong in [2-3 matching specialties, e.g., SQL modeling,
+experimentation analysis, dashboard automation].
+
+SKILLS
+Query & Programming: SQL ([e.g., PostgreSQL, BigQuery, Snowflake]),
+Python ([e.g., pandas, NumPy, scikit-learn]), [R if applicable]
+BI & Visualization: [e.g., Tableau, Power BI, Looker, Looker Studio]
+Data Engineering: [e.g., dbt, Airflow basics, data modeling, ETL]
+Methods: [e.g., A/B test analysis, cohort and funnel analysis,
+forecasting, regression, statistical significance testing]
+Business Tools: [e.g., Excel (advanced), Google Sheets, Jira]
+
+WORK EXPERIENCE
+
+[Job Title, e.g., Senior Data Analyst]
+[Company Name] | [City, State or Remote] | [MM/YYYY] - Present
+- Built [dashboard/reporting suite] in [tool] on [warehouse],
+  replacing [N] manual reports and saving [X hours/week] across
+  [teams].
+- Analyzed [business problem, e.g., churn drivers] using [method,
+  e.g., cohort analysis in SQL + logistic regression]; findings
+  drove [decision] that improved [metric] by [X%].
+- Designed and evaluated [N] A/B tests with [stakeholder team];
+  prevented [bad launch / shipped winner] worth [$X or X%].
+- Modeled [dataset] in [dbt/SQL], cutting query time [X%] and
+  standardizing [N] core metrics company-wide.
+
+[Job Title, e.g., Data Analyst]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- Automated [recurring analysis] with [Python/SQL], reducing
+  turnaround from [X days] to [Y hours].
+- Identified [insight, e.g., pricing anomaly across 3 regions],
+  recovering [$X] in [timeframe].
+- Partnered with [function] to define [KPIs]; adopted as the
+  standard for [scope, e.g., quarterly planning].
+
+[Job Title, e.g., Junior Analyst / prior function]
+[Company Name] | [City, State] | [MM/YYYY] - [MM/YYYY]
+- [1-2 bullets. Career changers: highlight quantitative wins from
+  the prior role - budgeting, reporting, process metrics.]
+
+PROJECTS (optional - strongest for early-career or career changers)
+[Project Name] | [GitHub/portfolio URL]
+- [Dataset + question + method + finding, e.g., "Analyzed 2M NYC
+  taxi trips in BigQuery; built a Tableau dashboard identifying
+  22% demand under-service in two boroughs".]
+
+EDUCATION
+[Degree], [Field, e.g., Statistics, Economics, Computer Science]
+[University Name] | [YYYY]
+
+CERTIFICATIONS (optional)
+[e.g., Google Data Analytics, Tableau Desktop Specialist,
+dbt Fundamentals | YYYY]
+
+
+============================================================
+ ANALYST BULLET FORMULA (delete before sending)
+ [Verb] + [data/problem] + [method + tool] + [decision it
+ drove] + [quantified outcome]
+ Weak:   "Created reports for management"
+ Strong: "Built a churn early-warning model in SQL + Python
+          flagging at-risk accounts 45 days out; CS outreach
+          on flagged accounts cut logo churn 18%"
+ Keep a private evidence log (query links, dashboard URLs)
+ per bullet - technical screens ask you to walk through one.
+============================================================

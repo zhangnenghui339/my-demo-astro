@@ -1,8 +1,10 @@
 ---
-type Variant = "ats" | "comparison";
+type Variant = "ats" | "comparison" | "templates";
+import { downloads, type SourceTag } from "../data/downloads";
 
 interface Props {
   variant: Variant;
+  sourceTag?: SourceTag;  // 意图分层埋点（Phase 1.5 迁 D1 时的口径）
   ctaText: string;
   helperText: string;
   modalTitle: string;
@@ -13,6 +15,7 @@ interface Props {
 
 const {
   variant,
+  sourceTag = variant === "comparison" ? "tools-comparison" : "ats-checklist",
   ctaText,
   helperText,
   modalTitle,
@@ -21,7 +24,10 @@ const {
   eyebrow = "Free download",
 } = Astro.props;
 
+// templates 暂无 Brevo 表单：空串 → 组件降级为直下链接（零摩擦红线优先），
+// 你在 Brevo 建好模板表单后把 URL 填进来即启用 email gate。
 const formUrls: Record<Variant, string> = {
+  templates: "", // TODO: Brevo templates form URL
   ats:
     "https://fb4ae211.sibforms.com/v2/serve/MUIFAGaOxiuMfFjmmu6svNgHrc18M_OKzQjBet4RZBrqn3tOVN1QbjBNSmXLpwj_Ap8yntxnhSXAN3Jkej4wVJTHhAAw6tbOW8bTu4qJ21z8z6_VdtmWiSOjVQ--LR5_-ZeYLdE-yOV7tsOtpFdcRh9XZ-eBw86m1my5xOgOfhs9UEa8PN9dBqQBhSpAYg_ZuCj8sfpAjhheqUf0bw==",
   comparison:
@@ -30,7 +36,7 @@ const formUrls: Record<Variant, string> = {
 ---
 
 <div class="cr-download-gate">
-  <button class="cr-btn cr-btn--signal" type="button" data-download-open={modalId}>
+  <button class="cr-btn cr-btn--signal" type="button" data-download-open={modalId} data-tag={sourceTag}>
     {ctaText}
   </button>
   <p>{helperText}</p>
@@ -45,16 +51,25 @@ const formUrls: Record<Variant, string> = {
     <p class="cr-eyebrow">{eyebrow}</p>
     <h2 id={`${modalId}-title`}>{modalTitle}</h2>
     <p class="cr-download-modal__copy">{modalCopy}</p>
-    <div class="cr-brevo-form cr-brevo-form--modal" aria-label={modalTitle}>
-      <iframe
-        width="540"
-        height="460"
-        src={formUrls[variant]}
-        frameborder="0"
-        scrolling="auto"
-        allowfullscreen
-      ></iframe>
-    </div>
+    {formUrls[variant] ? (
+      <div class="cr-brevo-form cr-brevo-form--modal" aria-label={modalTitle}>
+        <iframe
+          width="540"
+          height="460"
+          src={formUrls[variant]}
+          frameborder="0"
+          scrolling="auto"
+          allowfullscreen
+        ></iframe>
+      </div>
+    ) : (
+      <div class="cr-download-gate" style="margin-top:14px;">
+        <a class="cr-btn cr-btn--signal" href={downloads[sourceTag].url} rel="nofollow" data-tag={sourceTag} target="_blank">
+          Download now — no signup needed
+        </a>
+        <p style="margin-top:8px;font-size:.85rem;opacity:.8;">{downloads[sourceTag].label}</p>
+      </div>
+    )}
   </div>
 </div>
 
