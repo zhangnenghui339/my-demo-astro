@@ -20,6 +20,7 @@ astro-preview*.log
 
 # local private files
 .local/
+docs/
 docs/.local-strategy/
 
 # macOS-specific files
