@@ -9,6 +9,33 @@ export type Guide = {
   related: Array<{ label: string; href: string }>;
 };
 
+export type ResearchArticle = {
+  slug: string;
+  title: string;
+  description: string;
+  lastVerified: string;
+  label: string;
+};
+
+export const researchArticles: ResearchArticle[] = [
+  {
+    slug: "ats-resume-parsing-test",
+    title: "We Tested 4 ATS Platforms With the Same Resume",
+    description:
+      "A field-by-field test of Lever, Oracle Taleo, Workday, and Greenhouse reveals what candidates can actually verify after uploading a resume.",
+    lastVerified: "2026-07",
+    label: "Original research",
+  },
+  {
+    slug: "what-does-an-ats-score-mean",
+    title: "What Does an ATS Score Actually Mean?",
+    description:
+      "Why an ATS score is a diagnostic heuristic—not a pass probability—and how to use one without optimizing for a fictional universal ATS.",
+    lastVerified: "2026-07",
+    label: "Evidence-based analysis",
+  },
+];
+
 export const guides: Guide[] = [
   {
     slug: "how-to-pass-ats-in-2026",

@@ -1,5 +1,6 @@
 ---
 import type { AtsJob } from "../data/ats-jobs";
+import { withBase } from "../utils/site";
 
 interface Props {
   job?: AtsJob;
@@ -10,8 +11,8 @@ const resumeValue = job?.resumeExample ?? "";
 const jobValue = job?.jobDescriptionSample ?? "";
 const title = job ? `Paste your ${job.title} resume and target job.` : "Paste your resume and target job.";
 const copy = job
-  ? `This version checks ${job.title} resumes against role-specific ATS keywords, common pitfalls, and job-description language.`
-  : "This front-end MVP estimates ATS readiness from structure, keyword overlap, and common parsing risks. Replace the scoring rules with live parsing later.";
+  ? `This diagnostic checks ${job.title} resumes for role-specific keywords, common formatting risks, and job-description language.`
+  : "This diagnostic estimates general parseability and keyword overlap. It does not predict a decision from a specific employer's ATS.";
 ---
 
 <section class="cr-section" id="checker">
@@ -67,6 +68,10 @@ const copy = job
           </div>
           <p data-score-copy>Run the check to reveal parsing risk and missing keywords.</p>
         </div>
+        <p class="cr-scorecard__disclosure">
+          Diagnostic score only—not a pass probability.
+          <a href={withBase("/resources/what-does-an-ats-score-mean/")}>See what an ATS score measures →</a>
+        </p>
 
         <div class="cr-result-grid">
           <div>

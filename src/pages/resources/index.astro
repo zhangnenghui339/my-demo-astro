@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import QuickAnswer from "../../components/QuickAnswer.astro";
-import { guides } from "../../data/resources";
+import { guides, researchArticles } from "../../data/resources";
 import { stackedSchema, breadcrumbSchema } from "../../utils/seo";
 import { withBase } from "../../utils/site";
 
@@ -30,7 +30,10 @@ const jsonLd = [
     headline: title,
     description,
     path: "/resources/",
-    items: guides.map((g) => ({ name: g.title, url: `/resources/${g.slug}/` })),
+    items: [...researchArticles, ...guides].map((g) => ({
+      name: g.title,
+      url: `/resources/${g.slug}/`,
+    })),
     faqs,
   }),
   breadcrumbSchema([
@@ -53,6 +56,21 @@ const jsonLd = [
       </p>
 
       <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <div class="cr-research-grid">
+        {researchArticles.map((article) => (
+          <article class="cr-research-card">
+            <p class="cr-card__tag">{article.label} · Verified {article.lastVerified}</p>
+            <h2>
+              <a href={withBase(`/resources/${article.slug}/`)}>{article.title}</a>
+            </h2>
+            <p>{article.description}</p>
+            <a class="cr-link" href={withBase(`/resources/${article.slug}/`)}>
+              Read the evidence →
+            </a>
+          </article>
+        ))}
+      </div>
 
       <div style="display:grid;gap:16px;margin-top:28px;">
         {guides.map((g) => (

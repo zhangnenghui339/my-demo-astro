@@ -66,11 +66,13 @@ export function articleSchema({
   headline,
   description,
   path,
+  datePublished = "2026-07-01",
   dateModified = "2026-07-02",
 }: {
   headline: string;
   description: string;
   path: string;
+  datePublished?: string;
   dateModified?: string;
 }) {
   return {
@@ -79,7 +81,7 @@ export function articleSchema({
     headline,
     description,
     url: absoluteUrl(path),
-    datePublished: "2026-07-01",
+    datePublished,
     dateModified,
     author: organizationSchema(),
     publisher: organizationSchema(),

@@ -1,0 +1,317 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import LeadMagnetGate from "../../components/LeadMagnetGate.astro";
+import { articleSchema, breadcrumbSchema, faqSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+const path = "/resources/ats-resume-parsing-test/";
+const title = "We Tested 4 ATS Platforms With the Same Resume - CareerRadar";
+const description =
+  "We tested one resume in live Lever, Taleo, Workday, and Greenhouse application flows. Candidate-visible parsing ranged from about 18 fields to zero.";
+const quickAnswer =
+  "In our July 2026 field test, the same fictional resume produced four very different candidate experiences: one Taleo flow exposed about 18 fields, Lever exposed 7, Workday exposed 3 before account and region rules interfered, and one Greenhouse flow exposed none. This does not rank the platforms. It shows that upload success, resume parsing, and what a candidate can verify are three different things.";
+
+const faqs = [
+  {
+    question: "Which ATS parsed the resume best?",
+    answer:
+      "The test cannot support a platform ranking. Each employer configured a different application, and candidate-facing forms exposed different subsets of any background parsing. Lever was cleanest within the seven visible fields; Taleo exposed more fields and therefore more observable errors.",
+  },
+  {
+    question: "Does Greenhouse fail to parse resumes?",
+    answer:
+      "That is not what the test found. The Greenhouse application we tested exposed no candidate-visible parsing output. The resume may still have been parsed for recruiters; from the candidate side, the result was not observable.",
+  },
+  {
+    question: "Is DOCX better than PDF for ATS?",
+    answer:
+      "This study was not a controlled file-format benchmark. Follow the employer's instructions; otherwise use a simple DOCX or text-based PDF, then confirm the exported file contains selectable text in the correct reading order.",
+  },
+];
+
+const jsonLd = [
+  articleSchema({
+    headline: "We Uploaded the Same Resume to 4 ATS Platforms. Here's What Candidates Actually See.",
+    description,
+    path,
+    datePublished: "2026-07-20",
+    dateModified: "2026-07-20",
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Resources", path: "/resources/" },
+    { name: "4 ATS Resume Parsing Test", path },
+  ]),
+];
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <article class="cr-wrap cr-article">
+      <p class="cr-crumb">
+        <a href={withBase("/resources/")}>Resources</a> / Original research
+      </p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:24ch;">
+        We uploaded the same resume to 4 ATS platforms. Here's what candidates actually see.
+      </h1>
+      <p class="cr-article-lede">
+        We ran one fictional resume through live application flows on Lever, Oracle Taleo,
+        Workday, and Greenhouse, recorded every candidate-visible field, and stopped before final
+        submission. The biggest difference was not accuracy. It was whether the system showed us
+        any parsing result at all.
+      </p>
+      <div class="cr-article__byline">
+        <span>CareerRadar Research</span>
+        <span>Published July 20, 2026</span>
+        <a href={withBase("/how-we-test/")}>Methodology and editorial standards →</a>
+      </div>
+
+      <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <h2>How we tested—and what this can prove</h2>
+      <p>The setup was deliberately narrow:</p>
+      <ul>
+        <li>
+          One fictional senior product and engineering resume, prepared as a single-column DOCX
+          and text-based PDF with standard fonts, headings, and no graphics or tables.
+        </li>
+        <li>
+          Four live job postings: a fintech lender on Lever, an energy company on Taleo, a large
+          entertainment company on Workday, and a fintech startup on Greenhouse.
+        </li>
+        <li>
+          We logged the fields each application displayed, whether a value was correct, and whether
+          its source could be attributed to the resume. Testing took place in July 2026.
+        </li>
+      </ul>
+
+      <div class="cr-article__limits">
+        <h3>Two limits matter more than the numbers</h3>
+        <p>
+          <strong>This is four systems, four employers, and four postings.</strong> Employers
+          configure their ATS forms differently, sometimes per job. The results describe these
+          specific application flows on these dates—not a universal accuracy rate for any vendor.
+        </p>
+        <p>
+          <strong>The candidate's screen is not the complete parse.</strong> A value absent from the
+          form may still exist in the recruiter's view. We recorded an absent field as “not exposed,”
+          never as “failed,” unless a visible field that should have received resume data was empty.
+        </p>
+      </div>
+
+      <h2>The core finding: a candidate-side observability spectrum</h2>
+      <p>
+        The four applications exposed radically different amounts of evidence about what happened
+        after upload:
+      </p>
+      <div class="cr-tablewrap">
+        <table class="cr-tbl">
+          <thead>
+            <tr>
+              <th>ATS tested</th>
+              <th>Candidate-visible fields</th>
+              <th>What we observed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Oracle Taleo</strong></td>
+              <td>About 18 across 11 steps</td>
+              <td>Structured work history, education, and contact fields—with multiple errors.</td>
+            </tr>
+            <tr>
+              <td><strong>Lever</strong></td>
+              <td>7 on one page</td>
+              <td>Name, email, phone, location, company, and LinkedIn were correct.</td>
+            </tr>
+            <tr>
+              <td><strong>Workday</strong></td>
+              <td>3 before interference</td>
+              <td>Name, city, and phone appeared; account-region rules then affected the form.</td>
+            </tr>
+            <tr class="top">
+              <td><strong>Greenhouse</strong></td>
+              <td><strong>0</strong></td>
+              <td>The file was accepted, but no resume-derived fields were visible to us.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <blockquote>
+        On the Greenhouse application we tested, the candidate-facing flow exposed zero parsing
+        output. That is evidence of zero visibility—not evidence of zero background parsing.
+      </blockquote>
+      <p>
+        We call this range the <strong>candidate-side observability spectrum</strong>. It determines
+        what you can verify inside an application. It also explains why a third-party “ATS
+        compatibility” score cannot represent the behavior of a specific employer's ATS instance:
+        the tool is grading a proxy, not observing that instance. See our analysis of
+        <a href={withBase("/resources/what-does-an-ats-score-mean/")}>what an ATS score actually measures</a>.
+      </p>
+
+      <h2>What each system did</h2>
+      <h3>Lever: clean, correct, and shallow</h3>
+      <p>
+        Both files uploaded successfully in the Lever flow. The same seven visible values were
+        correct: name, email, phone, current location, current company, and LinkedIn URL. The phone
+        number was normalized, and the location was expanded to include the country.
+      </p>
+      <p>
+        That result only covers what the form revealed. Work history, dates, education, skills, and
+        certifications were not displayed as structured candidate fields. We therefore could not
+        evaluate whether Lever parsed them in the background.
+      </p>
+
+      <h3>Oracle Taleo: the most evidence and the most visible errors</h3>
+      <p>
+        Taleo exposed the richest candidate-visible structure, spread across an 11-step flow. Both
+        work-experience entries appeared with employer, title, date range, and most responsibility
+        text. Education level, school, and major also appeared.
+      </p>
+      <p>
+        The same flow duplicated one phone number into Home, Cellular, and Work fields; marked the
+        current role as not current; added an education location and graduation date that were not
+        in the resume; dropped a certification; and flattened bullet structure. The final review
+        also contained address data whose source we could not identify.
+      </p>
+      <p>
+        Of roughly 18 attributable fields in this case, 12 were complete, 1 was partial, and 5 were
+        missing or wrong. That ratio cannot be generalized. The reusable insight is the error
+        pattern: duplication, wrong status flags, phantom values, flattened text, and dropped
+        sections are exactly what to inspect on a long pre-filled form.
+      </p>
+
+      <h3>Workday: resume data met account and region rules</h3>
+      <p>
+        Workday's “Autofill with Resume” surfaced a name, city, and phone number. The candidate
+        account's country or region then triggered localized name and address fields plus phone
+        validation for a different country code, which rejected the resume's valid US number.
+      </p>
+      <p>
+        In this case the final form was a blend of resume extraction, account data, regional rules,
+        and manual input. That makes a Workday account audit especially important when applying
+        across countries or reusing an older profile.
+      </p>
+
+      <h3>Greenhouse: a candidate-side black box</h3>
+      <p>
+        The Greenhouse posting accepted the resume as an attachment. Name, email, and phone still
+        required manual entry, while company, title, experience count, dates, education, and skills
+        were not displayed as structured fields.
+      </p>
+      <p>
+        This does <strong>not</strong> mean Greenhouse parsed the resume poorly. It may have produced
+        a useful recruiter-side profile. The defensible conclusion is narrower: this candidate flow
+        gave us no observable parsing output to judge.
+      </p>
+
+      <h2>Why “does my resume pass the ATS?” is the wrong question</h2>
+      <p>
+        The <strong>parser layer</strong> extracts text and maps it into fields. The
+        <strong>employer configuration layer</strong> controls which fields you see, which questions
+        are required, how the workflow is localized, and how many steps exist. A candidate then sees
+        only the slice the application exposes.
+      </p>
+      <p>
+        Two employers using the same ATS can create different experiences. Even the same employer
+        can configure two postings differently. “We tested Workday” therefore cannot mean “we tested
+        your Workday application.” A useful pre-application check can estimate general parseability
+        and keyword coverage, but it cannot predict the complete behavior of a specific employer
+        setup.
+      </p>
+
+      <h2>Six actions supported by the evidence</h2>
+      <ol>
+        <li>
+          <strong>Use a conservative format as cheap insurance.</strong> Choose one column, standard
+          headings, body-text contact details, and a DOCX or text-based PDF. This reduces avoidable
+          risk; it does not guarantee a result.
+        </li>
+        <li>
+          <strong>Treat pre-filled data as a draft.</strong> Check duplicates, current-job flags,
+          dates, locations, certifications, and any value you did not write.
+        </li>
+        <li>
+          <strong>Continue checking on multi-step forms.</strong> Taleo surfaced structured data and
+          errors several steps after upload.
+        </li>
+        <li>
+          <strong>Audit your Workday account.</strong> Region, email, and historical profile data can
+          conflict with the current resume.
+        </li>
+        <li>
+          <strong>Optimize black-box flows for the human reader.</strong> When parsing output is not
+          visible, a clear and evidence-rich resume remains the controllable asset.
+        </li>
+        <li>
+          <strong>Use scores as diagnostics, not pass probabilities.</strong> A precise number cannot
+          tell you what a specific employer instance will do.
+        </li>
+      </ol>
+
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Check the controllable layer first.</strong> Use our free
+          diagnostic to find structural risks and missing job-description language before you apply.
+        </p>
+        <a class="cr-btn cr-btn--signal cr-btn--tiny" href={withBase("/tools/ats-checker/")}>Run the free check</a>
+      </div>
+
+      <h2>The eight-state framework we used</h2>
+      <p>
+        Every field received one state. The last two categories prevented us from turning missing
+        visibility or mixed data sources into false parser failures.
+      </p>
+      <div class="cr-tablewrap">
+        <table class="cr-tbl">
+          <thead>
+            <tr><th>State</th><th>Definition</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Exact parse</strong></td><td>Content, structure, and meaning match the resume.</td></tr>
+            <tr><td><strong>Normalized parse</strong></td><td>Content is correct; only formatting was standardized.</td></tr>
+            <tr><td><strong>Partial parse</strong></td><td>Only part of the content arrived, or it landed in a near-match field.</td></tr>
+            <tr><td><strong>Error parse</strong></td><td>Content was mapped incorrectly, changed in meaning, or fabricated.</td></tr>
+            <tr><td><strong>Not parsed</strong></td><td>The resume contains it, the page has a relevant field, and that field is empty.</td></tr>
+            <tr><td><strong>Not exposed</strong></td><td>The candidate page has no visible field, so background parsing cannot be judged.</td></tr>
+            <tr><td><strong>Not applicable</strong></td><td>The resume lacks the value, or the applicant must answer it.</td></tr>
+            <tr><td><strong>Source unclear</strong></td><td>The value may come from an account, default, profile, or manual input.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cr-article__limits">
+        <h2>What we are not claiming</h2>
+        <p>
+          This study cannot rank ATS vendors, calculate average accuracy, or prove that one file
+          format is universally better. It documents four cases and a repeatable method. If you cite
+          it, cite the supported finding: upload acceptance, background parsing, and candidate-visible
+          output are separate—and visibility ranged from about 18 fields to none in these tests.
+        </p>
+      </div>
+
+      <h2>FAQ</h2>
+      {faqs.map((faq) => (
+        <details class="cr-faq">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+
+      <div style="margin:38px 0 72px;">
+        <LeadMagnetGate
+          variant="ats"
+          sourceTag="ats-checklist"
+          ctaText="Get the 27-point ATS Repair Checklist (PDF)"
+          helperText="A printable pre-submission audit based on the failure modes we observed."
+          modalTitle="The ATS Repair Checklist"
+          modalCopy="Check parsing risks, keywords, and application fields before you submit—free PDF."
+          modalId="ats-field-test"
+        />
+      </div>
+    </article>
+  </section>
+</Layout>

@@ -1,0 +1,267 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import QuickAnswer from "../../components/QuickAnswer.astro";
+import LeadMagnetGate from "../../components/LeadMagnetGate.astro";
+import { articleSchema, breadcrumbSchema, faqSchema } from "../../utils/seo";
+import { withBase } from "../../utils/site";
+
+const path = "/resources/what-does-an-ats-score-mean/";
+const title = "What Does an ATS Score Actually Mean? - CareerRadar";
+const description =
+  "An ATS score estimates parseability and keyword overlap. It cannot predict how a specific employer's ATS will process or rank your resume.";
+const quickAnswer =
+  "An ATS score is a proxy, not a pass probability. Most resume checkers combine their own text extraction, format heuristics, and keyword overlap into one number. Those signals can expose a broken file or a poorly matched resume, but they do not observe the specific Workday, Greenhouse, Lever, or Taleo configuration used by the employer you are applying to.";
+
+const faqs = [
+  {
+    question: "What is a good ATS score?",
+    answer:
+      "There is no universal good score because each checker uses its own model. Use the score directionally: fix specific parsing and keyword issues, then stop when the resume is clear, truthful, and matched to the role rather than chasing a vendor-specific number.",
+  },
+  {
+    question: "Does a higher ATS score mean more interviews?",
+    answer:
+      "Not by itself. A score may improve basic parseability or keyword coverage, but interviews also depend on role fit, evidence, recruiter filters, knockout questions, applicant volume, timing, and human judgment.",
+  },
+  {
+    question: "Can an ATS checker test Greenhouse or Workday compatibility?",
+    answer:
+      "A third-party checker can test general file extraction and matching heuristics. Unless it has access to the specific employer's configured instance and recruiter-side output, it cannot verify that application's actual parsing behavior or predict its outcome.",
+  },
+];
+
+const jsonLd = [
+  articleSchema({
+    headline: "Your 'ATS Compatibility Score' Can't See What You Think It Sees",
+    description,
+    path,
+    datePublished: "2026-07-20",
+    dateModified: "2026-07-20",
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Resources", path: "/resources/" },
+    { name: "What an ATS Score Means", path },
+  ]),
+];
+---
+
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <section class="cr-page">
+    <article class="cr-wrap cr-article">
+      <p class="cr-crumb">
+        <a href={withBase("/resources/")}>Resources</a> / Evidence-based analysis
+      </p>
+      <h1 class="cr-h1" style="font-size:clamp(2rem,4.5vw,3.35rem);margin-top:12px;max-width:22ch;">
+        Your “ATS compatibility score” can't see what you think it sees.
+      </h1>
+      <p class="cr-article-lede">
+        A resume checker can give you a number in seconds. The number may reveal useful risks, but
+        it did not reach into a specific employer's Workday or Greenhouse account and watch your
+        application being processed.
+      </p>
+      <div class="cr-article__byline">
+        <span>CareerRadar Analysis</span>
+        <span>Published July 20, 2026</span>
+        <a href={withBase("/resources/ats-resume-parsing-test/")}>Read the 4-ATS field study →</a>
+      </div>
+
+      <QuickAnswer answer={quickAnswer} lastVerified="2026-07" />
+
+      <p>
+        Upload a resume to almost any checker and you receive a result such as “78/100,” “ATS
+        compatibility: good,” or “12 issues found.” The language makes the result feel like a direct
+        diagnosis from the employer's system.
+      </p>
+      <p>
+        That is not how the measurement works. In our
+        <a href={withBase("/resources/ats-resume-parsing-test/")}>live test of Lever, Oracle Taleo, Workday, and Greenhouse</a>,
+        one Greenhouse application exposed zero candidate-visible parsing output. No autofill,
+        preview, or structured resume fields appeared. The system may still have parsed the file for
+        a recruiter, but the candidate could not observe the result.
+      </p>
+      <blockquote>
+        If the real candidate flow does not expose its parsing output, a third-party checker outside
+        that employer's account cannot be measuring that output. It is measuring a proxy.
+      </blockquote>
+
+      <h2>What a resume checker actually measures</h2>
+      <p>A typical checker combines three legitimate signals:</p>
+      <ol>
+        <li>
+          <strong>Its own parser.</strong> The tool extracts text and sections from your file. If a
+          mainstream parser produces broken reading order or drops contact details, that is a useful
+          warning—even though it is not the employer's parser.
+        </li>
+        <li>
+          <strong>Format heuristics.</strong> It looks for columns, tables, text boxes, image-only
+          content, nonstandard headings, and other patterns that have caused problems in some systems.
+        </li>
+        <li>
+          <strong>Keyword overlap.</strong> It compares resume language with a job description. This
+          estimates vocabulary alignment and searchability, not whether the file parsed correctly.
+        </li>
+      </ol>
+      <p>
+        Those signals can answer a useful question: <em>Does this file look generally parseable and
+        aligned with this job description?</em> They cannot answer the more confident question:
+        <em>Will this employer's ATS pass me?</em>
+      </p>
+
+      <h2>The three layers hidden inside one score</h2>
+      <div class="cr-tablewrap">
+        <table class="cr-tbl">
+          <thead>
+            <tr><th>Layer</th><th>What it controls</th><th>Can a checker observe it?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Your file</strong></td>
+              <td>Text extraction, reading order, headings, and keyword coverage.</td>
+              <td>Yes, using its own parser and rules.</td>
+            </tr>
+            <tr>
+              <td><strong>ATS parser</strong></td>
+              <td>How the employer's software extracts and maps resume data.</td>
+              <td>Not for the specific employer instance from outside it.</td>
+            </tr>
+            <tr class="top">
+              <td><strong>Employer configuration</strong></td>
+              <td>Visible fields, knockout questions, account data, localization, workflow, and recruiter filters.</td>
+              <td>No; it varies by employer and often by posting.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Compressing all three layers into one number creates false precision. The file layer is
+        controllable and testable. The employer's parser and configuration are mostly outside a
+        candidate-side tool's visibility.
+      </p>
+
+      <h2>Why no universal score can measure “the real ATS”</h2>
+      <h3>Every application is a configured environment</h3>
+      <p>
+        The ATS vendor is only part of the system. Employers decide which fields appear, which are
+        required, which questions eliminate candidates, which account values persist, and how the
+        application is localized. In our test, Lever exposed 7 resume-derived fields, Taleo about 18
+        across 11 steps, Workday 3 before region rules interfered, and Greenhouse none.
+      </p>
+      <p>
+        The same resume met four different environments. A score calculated before opening the
+        application cannot anticipate a configuration it has never seen.
+      </p>
+
+      <h3>The candidate view has a hard evidence ceiling</h3>
+      <p>
+        Even inside a live application, candidates can verify only what the form displays. We used a
+        strict classification rule: “not shown” is not “failed to parse.” Any external checker sees
+        less about that employer instance than the candidate in the application, not more.
+      </p>
+      <p>
+        This is why a precise score should be interpreted as the checker's internal diagnostic—not
+        an acceptance probability, a vendor-specific compatibility rating, or a prediction of
+        recruiter behavior.
+      </p>
+
+      <h2>When an ATS score is still useful</h2>
+      <h3>1. As a smoke test</h3>
+      <p>
+        If a reputable parser cannot extract your text, contact details, headings, or reading order,
+        fix the file. Another parser may fail differently, but a known failure is not worth carrying
+        into an application.
+      </p>
+
+      <h3>2. As a keyword mirror</h3>
+      <p>
+        Comparing your resume with a real target job can uncover missing tools, credentials, and role
+        language. Add only terms you genuinely know and support them inside experience bullets. This
+        improves both recruiter searchability and the human read.
+      </p>
+
+      <h3>3. As a layout tie-breaker</h3>
+      <p>
+        When two versions communicate equally well, prefer the one that extracts into clean plain
+        text. A diagnostic is useful for eliminating avoidable risk, not for selecting the version
+        with the most impressive number.
+      </p>
+
+      <div class="cr-article__limits">
+        <h3>Stop optimizing when the score stops producing specific fixes</h3>
+        <p>
+          Do not trade truth, clarity, or evidence for points. A checker-specific score of 90 is not
+          automatically stronger than an 80 if the higher-scoring resume is stuffed with awkward
+          keywords or stripped of the achievements a recruiter needs to see.
+        </p>
+      </div>
+
+      <h2>Audit the application, not only the file</h2>
+      <p>
+        The highest-leverage verification happens inside the real application, where the actual
+        environment may expose its output. Use this five-minute audit:
+      </p>
+      <ul>
+        <li>
+          <strong>Verify every pre-filled value.</strong> Look for duplicated phone numbers, wrong
+          current-job flags, invented dates or locations, and missing certifications.
+        </li>
+        <li>
+          <strong>Keep checking through multi-step flows.</strong> Structured records and errors may
+          appear several screens after upload.
+        </li>
+        <li>
+          <strong>Review stored account data.</strong> On Workday-style systems, region and historical
+          profile values may override current resume data.
+        </li>
+        <li>
+          <strong>Use the final review as your source of truth.</strong> Correct what the application
+          shows before submitting.
+        </li>
+        <li>
+          <strong>On black-box forms, optimize for the recruiter.</strong> Clear structure, truthful
+          keywords, and quickly scannable evidence survive more environments than score chasing.
+        </li>
+      </ul>
+
+      <div class="cr-note">
+        <p>
+          <strong style="color:#fff;">Use our score as a diagnostic, not a promise.</strong> It checks
+          structure and job-description overlap, then shows the specific issues behind the number.
+        </p>
+        <a class="cr-btn cr-btn--signal cr-btn--tiny" href={withBase("/tools/ats-checker/")}>Check my resume</a>
+      </div>
+
+      <h2>The bottom line</h2>
+      <p>
+        An ATS score is a parseability-and-keyword estimate. Use it to find specific, controllable
+        problems. Do not read it as a pass probability or proof of compatibility with a specific
+        employer's system.
+      </p>
+      <p>
+        Then inspect the real application. What it pre-fills, rejects, overwrites, or hides is the
+        only system-specific evidence available to you—and evidence is more valuable than a proxy.
+      </p>
+
+      <h2>FAQ</h2>
+      {faqs.map((faq) => (
+        <details class="cr-faq">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+
+      <div style="margin:38px 0 72px;">
+        <LeadMagnetGate
+          variant="ats"
+          sourceTag="ats-checklist"
+          ctaText="Get the 27-point ATS Repair Checklist (PDF)"
+          helperText="Use a concrete pre-submission audit instead of chasing an unexplained score."
+          modalTitle="The ATS Repair Checklist"
+          modalCopy="A 27-point audit for structure, keywords, and application fields—free PDF."
+          modalId="ats-score-truth"
+        />
+      </div>
+    </article>
+  </section>
+</Layout>

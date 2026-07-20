@@ -401,7 +401,30 @@ details.cr-faq p { color: var(--muted); font-size: 15px; margin: 12px 0 2px; }
 .cr-author { display: flex; gap: 14px; align-items: center; padding: 22px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
 .cr-author__avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--signal), var(--signal-2)); flex: none; }
 .cr-disc { font-size: 13px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-top: 14px; }
+
+/* ---- Original research / evidence pages ---- */
+.cr-research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 30px; }
+.cr-research-card { border: 1px solid var(--line); border-top: 3px solid var(--signal); border-radius: 14px; padding: 26px; background: var(--surface); }
+.cr-research-card h2 { font-size: clamp(1.2rem, 2.2vw, 1.55rem); line-height: 1.2; }
+.cr-research-card h2 a:hover { color: #8a5e14; }
+.cr-research-card > p:not(.cr-card__tag) { color: var(--muted); font-size: 15px; }
+.cr-article { max-width: 800px; }
+.cr-article-lede { font-size: 1.18rem; line-height: 1.65; color: var(--muted); margin: 24px 0 0; }
+.cr-article h2 { font-size: clamp(1.55rem, 3vw, 2.1rem); line-height: 1.18; margin: 52px 0 16px; }
+.cr-article h3 { font-size: 1.25rem; line-height: 1.25; margin: 34px 0 10px; }
+.cr-article p { margin: 14px 0; }
+.cr-article a { color: #8a5e14; text-decoration: underline; text-underline-offset: 2px; }
+.cr-article ul, .cr-article ol { padding-left: 1.35rem; }
+.cr-article li { margin: 9px 0; }
+.cr-article blockquote { margin: 28px 0; padding: 20px 24px; border-left: 3px solid var(--signal); background: var(--surface); font-family: "Space Grotesk", sans-serif; font-size: 1.08rem; }
+.cr-article .cr-tablewrap { margin: 24px 0 30px; max-width: 100%; }
+.cr-article .cr-note { margin: 38px 0; text-decoration: none; }
+.cr-article__limits { border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; background: var(--surface); margin: 28px 0; }
+.cr-article__limits h2, .cr-article__limits h3 { margin-top: 0; }
+.cr-article__byline { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 18px 0 24px; border-bottom: 1px solid var(--line); color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 12.5px; }
+.cr-article__byline a { color: #8a5e14; }
 @media (max-width: 760px) { .cr-proscons, .cr-guide { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .cr-research-grid { grid-template-columns: 1fr; } .cr-article blockquote { margin-left: 0; margin-right: 0; } }
 
 /* ---- ATS checker page ---- */
 .cr-job-context {
@@ -520,6 +543,8 @@ details.cr-faq p { color: var(--muted); font-size: 15px; margin: 12px 0 2px; }
   color: var(--muted);
   margin: 0;
 }
+.cr-scorecard__disclosure { color: var(--muted); font-size: 12.5px; margin: -8px 0 18px; }
+.cr-scorecard__disclosure a { color: #8a5e14; text-decoration: underline; text-underline-offset: 2px; }
 .cr-result-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
