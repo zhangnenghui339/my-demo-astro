@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "publish:seo": "npm run build && npm run gsc:submit-sitemap",
+    "gsc:submit-sitemap": "node scripts/gsc-submit-sitemap.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
